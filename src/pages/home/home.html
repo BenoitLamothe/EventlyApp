@@ -52,13 +52,12 @@
           <ion-col width-100>
             <h1>Description</h1>
           </ion-col>
-
         </ion-row>
         <ion-row>
           <ion-col>
-             <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
-              type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem
-              Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+                a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -72,15 +71,17 @@
             Téléphone: 819-944-5679
           </li>
           <li>
-            Site web: <a href="https://digihub.ca/">https://digihub.ca/</a>
+            Site web:
+            <a href="https://digihub.ca/">https://digihub.ca/</a>
           </li>
         </ul>
       </ion-grid>
     </ion-card-content>
     <button class="info-button"
             ion-button
-            full>
-      Créer mon horaire
+            full
+            (click)="navigateToScheduleSettingsPage('theEventObject')">
+      Personaliser mon horaire
     </button>
   </ion-card>
 </ion-content>

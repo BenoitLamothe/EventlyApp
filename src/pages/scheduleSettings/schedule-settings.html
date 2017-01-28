@@ -1,0 +1,55 @@
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <h1>Vos intérêts</h1>
+    </ion-row>
+    <ion-row wrap>
+      <ion-col width-33
+               *ngFor="let category of categories">
+        <div class="button-toggle category"
+             [ngClass]="{checked:category.isChecked}"
+             (click)="toggleCategory(category)">
+          {{category.label}}
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <h1>Je serais présent</h1>
+    </ion-row>
+    <ion-row>
+      <ion-col width-33
+               *ngFor="let period of periods">
+        <div class="button-toggle time"
+             [ngClass]="{checked:period.isChecked}"
+             (click)="togglePeriod(period)">
+          <ion-icon class="icon"
+                    md
+                    name="{{period.icon}}"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <h1>Mode de déplacement</h1>
+    </ion-row>
+    <ion-row>
+      <ion-col width-33
+               *ngFor="let transport of transports">
+        <div class="button-toggle time"
+             [ngClass]="{checked:transport.isChecked}"
+             (click)="toggleTransport(transport)">
+          <ion-icon class="icon"
+                    md
+                    name="{{transport.icon}}"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <button class="info-button"
+              ion-button
+              full
+              (click)="navigateToSchedulePage('theEventObject')">
+        Voir mon horaire
+      </button>
+    </ion-row>
+  </ion-grid>
+</ion-content>
