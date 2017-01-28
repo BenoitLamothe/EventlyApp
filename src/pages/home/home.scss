@@ -1,3 +1,25 @@
 page-home {
 
+  .category-container {
+    height: 120px;
+    .date-display {
+      color:white;
+      font-size: 29px;
+      padding: 25px 10px;
+    }
+  }
+
+  .info-button {
+    margin: 0;
+  }
+
+  .event-card {
+    margin-bottom:0;
+  }
+
+  .event-details-card {
+    .main-image {
+      max-height: 200px;
+    }
+  }
 }
