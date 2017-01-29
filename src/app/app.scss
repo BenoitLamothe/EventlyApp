@@ -22,9 +22,10 @@
     top: -5px;
 }
 
-ion-navbar {
-    padding-top: 34px !important;
-}
+  .bar-button-default-ios {
+    color: #fff !important;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+  }
 
 .scroll-content {
     background: -webkit-linear-gradient(bottom, #9eb2c1, #ced6de);
