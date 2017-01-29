@@ -30,7 +30,8 @@ Les planifications d'horaires sont calculées en temps réel, aucunement hard co
 ce qui a causé plusieurs défis techniques tout au long du développement!
 
 [Utilisation des données]
-Pour ce qui est des données, on utilise des données de commerçants venant de Yelp et
+Pour ce qui est des données, on utilise des données de commerçants venant de Yelp,
+des évènements venant de EventBrite et
 des évènements provenant du site de Tourisme Shawinigan.
 Il faut dire que ces dernières n'étaient pas faciles à obtenir,
 il a fallu programmer un Web crawler afin de populer nos bases de données.
@@ -61,3 +62,31 @@ On est persuadés que même les citoyens de Shawinigan pourraient en tirer parti
 soit pour simplifier la planification de leurs sorties,
 ou pour découvrir de nouvelles attractions qu'eux même ne connaissaient pas,
 ce qui la rend utile autant pour les citoyens que pour les gens de l'extérieur.
+
+
+POTENTIELLES QUESTIONS PIÈGE :
+
+- Est-ce que l'application peut nuire aux commerçants en favorisants certains d'entre eux?
+
+L'algorithme actuel favorise les commerçants à proximité de l'évènement choisi,
+et celui est un facteur de défavorisation physique déjà existant.
+
+- Comment pensez-vous générer des profits avec une telle application?
+
+L'application même de génère pas de profits directement,
+mais favoriserait le commerce local en incitant les gens à visiter plus d'un endroit
+par rapport à ce qu'ils avaient prévus au départ.
+Ensuite, il y aurait un potentiel de monétisation des évènements qui pourrait être fait,
+puisqu'il s'agit d'une vitrine pour les artistes ou commerçants qui touchent des revenus.
+
+- Pourquoi une application web vs. native?
+
+On considère que c'est une application qui ne sera pas utilisée à tous les jours par la plupart
+des utilisateurs et qu'elle risque d'être désinstallée par l'utilisateur si c'est le cas.
+
+La version web comporte les mêmes avantages et est plus facilement accessible,
+tout en permettant la conservation des horaires sur mesure à travers le temps.
+
+Elle peut d'ailleurs être à deux poils prêts d'une application native si elle est ajoutée à l'écran d'accueil.
+
+

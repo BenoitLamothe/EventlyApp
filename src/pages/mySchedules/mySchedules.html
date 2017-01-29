@@ -1,8 +1,8 @@
 
 <ion-content>
   <div *ngFor="let schedule of schedules">
-  <ion-card class="event-card" (click)="navigateToSchedule(schedule)">
-    <div class="category-container default-category">
+  <ion-card class="event-card">
+    <div class="category-container default-category" (click)="navigateToSchedule(schedule)">
       <ion-grid>
         <ion-row>
           <ion-col width-80>
@@ -16,7 +16,7 @@
       </ion-grid>
     </div>
     <ion-card-content class="card-content">
-      <h2 style="padding-top: 3px;"> {{schedule.name}} </h2>
+      <h2 style="padding-top:3px;">{{schedule.name}}</h2>
     </ion-card-content>
   </ion-card>
   </div>

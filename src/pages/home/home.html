@@ -21,7 +21,7 @@
     <div *ngFor="let event of events | evDateFilter:'startTime':filterDate">
       <ion-card class="event-card"
                 (click)="selectEventId(event.id)">
-        <div class="category-container default-category">
+        <div class="category-container {{event.category ? categoryToClass(event.category) : 'default-category'}}">
           <ion-grid>
             <ion-row>
               <ion-col width-80>
