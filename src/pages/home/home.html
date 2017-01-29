@@ -1,38 +1,46 @@
-<ion-content padding
-             class="getting-started">
-  <ion-item>
-    <ion-label>Filtrer par date</ion-label>
-    <ion-datetime displayFormat="MM/DD/YYYY"
-                  doneText="Sélectionner"
-                  cancelText="Annuler"
-                  [min]="minDate"
-                  [max]="maxDate"
+<ion-header>
+  <ion-navbar color="lightgrey">
+    <ion-item>
+      <ion-label>Filtrer par date</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY"
+                    doneText="Sélectionner"
+                    cancelText="Annuler"
+                    [min]="minDate"
+                    [max]="maxDate"
                   [(ngModel)]="filterDate" (ionChange)="setUnixFilterDate(filterDate)"></ion-datetime>
   </ion-item>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="getting-started">
   <ev-loader *ngIf="isLoading"></ev-loader>
   <div *ngIf="!isLoading">
     <div *ngFor="let event of events | evDateFilter:'startTime':unixFilterDate">
       <ion-card class="event-card">
-        <div class="category-container"
-             style="background: url('http://www.oscars.org/sites/oscars/files/styles/hero_image_wide_default/public/sgt_0.jpg?itok=1aRxXStQ') no-repeat; background-size: 100%;">
-          <div class="date-display">
-            <span>{{(event.startTime | amFromUnix) | amDateFormat:'DD MMMM'}}</span>
-            <br/>
-            <span>{{(event.startTime| amFromUnix) | amDateFormat:'YYYY'}}</span>
-          </div>
+        <div class="category-container default-category">
+          <ion-grid>
+            <ion-row>
+               <ion-col width-67>
+                  <h2>{{(event.startTime | amFromUnix) | amDateFormat:'DD MMMM'}}</h2>
+                  <p>{{(event.startTime| amFromUnix) | amDateFormat:'YYYY'}}</p>
+               </ion-col>
+               <ion-col width-33>
+                 <button ion-button round outline color="white" (click)="selectEventId(event.id)" small>
+                    {{selectedEventId === event.id ? "MOINS" : "PLUS"}}
+                  </button>
+               </ion-col>
+            </ion-row>
+          </ion-grid>
         </div>
         <ion-card-content class="card-content">
-          <ion-card-title>
+          <h2>
             {{event.name}}
-          </ion-card-title>
+          </h2>
+          <p>
+            </p>
         </ion-card-content>
-        <button class="info-button"
-                ion-button
-                full
-                (click)="selectEventId(event.id)">
-          {{selectedEventId === event.id ? "Moins d'information" : "Plus d'information"}}
-        </button>
       </ion-card>
+
       <ion-card *ngIf="selectedEventId === event.id"
                 class="event-details-card">
         <img class="main-image"

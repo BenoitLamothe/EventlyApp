@@ -31,9 +31,14 @@ page-schedule-settings {
   .toolbar-background {
     border: none;
   }
-  
+
   .bar-button-default-ios, .content-ios {
     color: #fff !important;
     text-shadow: 1px 1px rgba(0,0,0,0.1);
+  }
+
+  .error-container {
+    padding: 15px;
+    color: #f53d3d;
   }
 }

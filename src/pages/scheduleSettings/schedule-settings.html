@@ -1,8 +1,6 @@
 <ion-header>
-  <ion-navbar color="lightgrey">
-  </ion-navbar>
+  <ion-navbar color="lightgrey"></ion-navbar>
 </ion-header>
-
 <ion-content padding>
   <ion-grid>
     <ion-row>
@@ -47,6 +45,9 @@
                     name="{{transport.icon}}"></ion-icon>
         </div>
       </ion-col>
+    </ion-row>
+    <ion-row class="error-container"
+             *ngIf="categoryError.hasError">{{categoryError.message}}
     </ion-row>
     <ion-row>
       <button class="info-button"
