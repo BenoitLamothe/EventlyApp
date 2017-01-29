@@ -12,7 +12,7 @@ page-schedule {
     display: flex;
     justify-content: center;
   }
-
+  
   .time-travel {
     height: 30px;
     width: 150px;
@@ -29,12 +29,12 @@ page-schedule {
   }
 
   ion-item.date{
-    border-radius: 5px;
+    border-radius: 0px;
     margin: 0 auto;
     text-align: center;
 
     .item-inner {
-      border-bottom: none;
+      border-bottom: none !important;
     }
   }
 
@@ -52,11 +52,11 @@ page-schedule {
     margin-top: -30px;
   }
 
-      h2, p {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-      }
+  h2, p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 
   #map {
     height: 200px;

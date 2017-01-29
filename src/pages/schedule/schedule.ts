@@ -5,9 +5,10 @@
  * Created by Yann on 1/28/2017.
  */
 import {Component, OnInit, ApplicationRef} from '@angular/core';
-import {NavParams, NavController} from "ionic-angular";
+import {NavParams, NavController, ToastController} from "ionic-angular";
 import {EventlyService} from "../../services/evently-service";
 import moment from "moment";
+import { TabsPage } from '../tabs/tabs';
 import set = Reflect.set;
 
 declare let google;
@@ -20,21 +21,23 @@ export class SchedulePage implements OnInit {
   isLoading = true;
   scheduleSettings;
   googleTransit;
-  schedules;
   selectedAttractions;
   map;
+  schedule;
   googleMapsDistanceService;
   googleMapsDirectionService;
   moment;
   directionsDisplay;
   event;
+  tabsPage;
 
-  constructor(private navCtrl: NavController, navParams: NavParams, private eventlyService: EventlyService, private appRef: ApplicationRef) {
+  constructor(private navCtrl: NavController, navParams: NavParams, private eventlyService: EventlyService, private appRef: ApplicationRef, public toastCtrl: ToastController) {
     this.scheduleSettings = navParams.get('scheduleSettings');
     this.googleTransit = this.scheduleSettings.criterias.find(x => x.name === 'transport').value;
     this.googleMapsDistanceService = new google.maps.DistanceMatrixService();
     this.googleMapsDirectionService = new google.maps.DirectionsService;
     this.moment = moment;
+    this.tabsPage = TabsPage;
   }
 
   ngOnInit() {
@@ -118,5 +121,13 @@ export class SchedulePage implements OnInit {
         "stylers": [{"color": "#ffffff"}]
       }]
     });
+  }
+
+  saveSchedule(){
+    this.eventlyService.addMySchedule({ selectedAttractions: this.selectedAttractions, event: this.event, scheduleSettings: this.scheduleSettings });
+    this.toastCtrl.create({
+      message: 'Votre horaire a été sauvegardé',
+      duration: 4000
+    }).present();
   }
 }

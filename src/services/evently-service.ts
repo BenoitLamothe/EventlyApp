@@ -7,7 +7,7 @@ import {Http} from "@angular/http";
 
 @Injectable()
 export class EventlyService {
-  url = 'http://192.168.199.67:4567';
+  url = 'http://api.evvnt.me';
   storageKey = "mySchedules";
   mySchedules = JSON.parse(localStorage.getItem(this.storageKey)) || [];
 
