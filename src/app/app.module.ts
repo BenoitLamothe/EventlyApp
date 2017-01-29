@@ -6,6 +6,9 @@ import {ScheduleSettingsPage} from "../pages/scheduleSettings/schedule-settings"
 import {SchedulePage} from "../pages/schedule/schedule";
 import {MySchedulesPage} from "../pages/mySchedules/mySchedules";
 import {TabsPage} from "../pages/tabs/tabs";
+import {MomentModule} from "angular2-moment";
+import {EvLoaderComponent} from "../components/evLoader/ev-loader.component";
+import {EvFilterPipe} from "../pipes/ev-filter.pipe";
 
 @NgModule({
   declarations: [
@@ -14,9 +17,12 @@ import {TabsPage} from "../pages/tabs/tabs";
     ScheduleSettingsPage,
     SchedulePage,
     MySchedulesPage,
-    TabsPage
+    TabsPage,
+    EvLoaderComponent,
+    EvFilterPipe
   ],
   imports: [
+    MomentModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
