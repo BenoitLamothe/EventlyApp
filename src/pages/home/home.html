@@ -7,7 +7,7 @@
                     cancelText="Annuler"
                     [min]="minDate"
                     [max]="maxDate"
-                    [(ngModel)]="filterDate"></ion-datetime>
+                  [(ngModel)]="filterDate" (ionChange)="setUnixFilterDate(filterDate)"></ion-datetime>
   </ion-item>
   </ion-navbar>
 </ion-header>
@@ -15,7 +15,7 @@
 <ion-content padding class="getting-started">
   <ev-loader *ngIf="isLoading"></ev-loader>
   <div *ngIf="!isLoading">
-    <div *ngFor="let event of events | evFilter:'startTime':filterDate">
+    <div *ngFor="let event of events | evDateFilter:'startTime':unixFilterDate">
       <ion-card class="event-card" (click)="selectEventId(event.id)">
         <div class="category-container default-category">
           <ion-grid>
