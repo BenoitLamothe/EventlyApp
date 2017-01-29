@@ -11,7 +11,6 @@ export class EventlyService {
   url = 'http://api.evvnt.me';
   storageKey = "mySchedules";
   mySchedules = JSON.parse(localStorage.getItem(this.storageKey)) || [];
-  observableSchedules : BehaviorSubject<any> = new BehaviorSubject(this.mySchedules);
 
   constructor(private http: Http) {
 
@@ -32,7 +31,6 @@ export class EventlyService {
   public addMySchedule(mySchedule) {
     this.mySchedules.push(mySchedule);
     localStorage.setItem(this.storageKey, JSON.stringify(this.mySchedules));
-    this.observableSchedules.next(this.mySchedules);
   }
 
   public deleteMySchedule(scheduleIndex) {
@@ -40,6 +38,5 @@ export class EventlyService {
       this.mySchedules.splice(scheduleIndex, 1);
     }
     localStorage.setItem(this.storageKey, JSON.stringify(this.mySchedules));
-    this.observableSchedules.next(this.mySchedules);
   }
 }
