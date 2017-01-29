@@ -7,6 +7,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavParams, NavController} from "ionic-angular";
 import {EventlyService} from "../../services/evently-service";
+import moment from "moment";
 
 declare let google;
 @Component({
@@ -21,9 +22,14 @@ export class SchedulePage implements OnInit {
   schedules;
   selectedIndex = -1;
   map;
+  googleMapsService;
+  moment;
 
   constructor(private navCtrl: NavController, navParams: NavParams, private eventlyService: EventlyService) {
     this.scheduleSettings = navParams.get('scheduleSettings');
+    this.googleTransit = this.scheduleSettings.criterias.find(x => x.name === 'transport').value;
+    this.googleMapsService = new google.maps.DistanceMatrixService();
+    this.moment = moment;
   }
 
   ngOnInit() {
@@ -203,6 +209,22 @@ export class SchedulePage implements OnInit {
     if (this.selectedIndex > this.schedules.attractions.length) {
       this.selectedIndex = 0;
     }
+
+    const attractions = this.schedules.attractions[this.selectedIndex];
+    const distanceMatrixQuery = {
+      travelMode: this.googleTransit,
+      origins: attractions.slice(0, attractions.length - 1).map(x => ({lat: x.lat, lng: x.long})),
+      destinations: attractions.slice(1, attractions.length).map(x => ({lat: x.lat, lng: x.long})),
+    };
+
+    this.googleMapsService.getDistanceMatrix(distanceMatrixQuery, (distanceMatrix) => {
+      console.log(distanceMatrix);
+      for (let i = 0; i < attractions.length - 1; i++) {
+        const attraction = attractions[i];
+        attraction.travelTime = distanceMatrix.rows[i].elements[i].duration.value;
+        console.log(attraction.travelTime)
+      }
+    });
   }
 
   loadMap() {
@@ -236,6 +258,5 @@ export class SchedulePage implements OnInit {
         "stylers": [{"color": "#ffffff"}]
       }]
     });
-
   }
 }

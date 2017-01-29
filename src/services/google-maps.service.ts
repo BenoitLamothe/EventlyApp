@@ -9,5 +9,7 @@ export class GoogleMapsService {
   constructor() {
   }
 
+  getDistanceMatrix(query) {
 
+  }
 }

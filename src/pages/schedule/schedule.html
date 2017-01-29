@@ -2,7 +2,7 @@
   <ev-loader *ngIf="isLoading"></ev-loader>
   <div *ngIf="!isLoading">
     <ion-grid>
-      <ion-row>
+      <ion-row (click)="selectNewSchedule()">
         <ion-col width-50>
           Date: 1 fevrier 2017
         </ion-col>
@@ -38,7 +38,7 @@
         <div *ngIf="!last" style="text-align: center">
           <div class="vertical-line"></div>
           <div class="time-travel">
-            5 mins
+            {{moment.duration(attraction.travelTime, "seconds").humanize()}}
           </div>
         </div>
       </div>

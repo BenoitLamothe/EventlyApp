@@ -17,7 +17,7 @@ export class ScheduleSettingsPage implements OnInit {
   event;
   categories = [{label: 'Sport', isChecked: false, icon: 'football'}, {label: 'Spectacle', isChecked: false, icon: 'mic'}, {label: 'Plein air', isChecked: false, icon: 'leaf'}];
   periods = [{icon: 'alarm', value: 'morning', isChecked: false, isLocked: false}, {icon: 'sunny', value: 'afternoon', isChecked: false, isLocked: false}, {icon: 'moon', value: 'evening', isChecked: false, isLocked: false}];
-  transports = [{icon: 'walk', value:'walking', isChecked: true}, {icon: 'bicycle', value:'bicycling', isChecked: false}, {icon: 'car', value:'driving', isChecked: false}];
+  transports = [{icon: 'walk', value:'WALKING', isChecked: true}, {icon: 'bicycle', value:'BICYCLING', isChecked: false}, {icon: 'car', value:'DRIVING', isChecked: false}];
 
   constructor(private navCtrl: NavController, navParams: NavParams, private eventlyService: EventlyService) {
     this.event = navParams.get('event');
