@@ -75,13 +75,12 @@ export class ScheduleSettingsPage implements OnInit {
     const scheduleSetting = {
       eventId: this.event.id,
       availability: this.periods.filter(x => x.isChecked).map(x => x.value),
-      criterias: [{name: 'categories', value: this.categories.filter(x => x.isChecked).map(x => x.label)}
+      criterias: [
+        {name: 'categories', value: this.categories.filter(x => x.isChecked).map(x => x.label)},
+        {name: 'transport', value: this.transports.find(x=>x.isChecked).map(x=>x.)}
       ]
     };
-    this.eventlyService.sendScheduleSetting(scheduleSetting).subscribe(response => {
-      console.log(response.json());
-      this.navCtrl.push(SchedulePage, {schedule:response.json()});
-    })
 
+    this.navCtrl.push(SchedulePage, {scheduleSettings:scheduleSetting});
   }
 }

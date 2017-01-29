@@ -62,4 +62,13 @@ page-home {
       }
     }
   }
+
+  .remove-date {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 25px;
+    color: white;
+    text-shadow: 1px 1px rgba(0,0,0,0.1);
+  }
 }
