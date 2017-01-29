@@ -21,3 +21,13 @@
     position: relative;
     top: -5px;
 }
+
+.scroll-content {
+    background: -webkit-linear-gradient(bottom, #9eb2c1, #ced6de);
+    background: -o-linear-gradient(bottom, #9eb2c1, #ced6de);
+    background: linear-gradient(to top, #9eb2c1, #ced6de);
+}
+
+.toolbar-background {
+    border: none !important;
+}
