@@ -7,12 +7,21 @@ page-schedule {
     }
   }
 
+  .hidden {
+    display: none;
+  }
+
+  .regenerate-button {
+    float: right;
+    margin-right: 17px;
+  }
+
   .time-container {
     flex-direction: row;
     display: flex;
     justify-content: center;
   }
-  
+
   .time-travel {
     height: 30px;
     width: 150px;
@@ -39,7 +48,11 @@ page-schedule {
   }
 
   .category-container {
-    height: 10px;
+    height: 30px;
+    color: white;
+    ion-col {
+      padding: 2px;
+    }
   }
 
   .vertical-line {
