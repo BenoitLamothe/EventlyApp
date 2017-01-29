@@ -80,7 +80,7 @@ export class ScheduleSettingsPage implements OnInit {
     };
     this.eventlyService.sendScheduleSetting(scheduleSetting).subscribe(response => {
       console.log(response.json());
-      this.navCtrl.push(SchedulePage, response.json());
+      this.navCtrl.push(SchedulePage, {schedule:response.json()});
     })
 
   }

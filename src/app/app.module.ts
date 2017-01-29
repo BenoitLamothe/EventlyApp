@@ -21,7 +21,7 @@ import {EvDateFilterPipe} from "../pipes/ev-date-filter.pipe";
     TabsPage,
     EvLoaderComponent,
     EvFilterPipe,
-    EvDateFilterPipe
+    EvDateFilterPipe,
   ],
   imports: [
     MomentModule,

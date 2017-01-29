@@ -13,6 +13,12 @@
 </ion-header>
 
 <ion-content padding class="getting-started">
+  <button class="info-button"
+          ion-button
+          full
+          (click)="navigateToSchedulePage()">
+    GO TO SCHEDULE
+  </button>
   <ev-loader *ngIf="isLoading"></ev-loader>
   <div *ngIf="!isLoading">
     <div *ngFor="let event of events | evDateFilter:'startTime':unixFilterDate">
