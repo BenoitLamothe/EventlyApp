@@ -23,4 +23,17 @@ page-schedule-settings {
       opacity: 1;
     }
   }
+
+  .scroll-content {
+    background: linear-gradient(0deg, #9eb2c1, #ced6de)
+  }
+
+  .toolbar-background {
+    border: none;
+  }
+  
+  .bar-button-default-ios, .content-ios {
+    color: #fff !important;
+    text-shadow: 1px 1px rgba(0,0,0,0.1);
+  }
 }

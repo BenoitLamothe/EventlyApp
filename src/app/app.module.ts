@@ -4,13 +4,17 @@ import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
 import {ScheduleSettingsPage} from "../pages/scheduleSettings/schedule-settings";
 import {SchedulePage} from "../pages/schedule/schedule";
+import {MySchedulesPage} from "../pages/mySchedules/mySchedules";
+import {TabsPage} from "../pages/tabs/tabs";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ScheduleSettingsPage,
-    SchedulePage
+    SchedulePage,
+    MySchedulesPage,
+    TabsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -20,7 +24,9 @@ import {SchedulePage} from "../pages/schedule/schedule";
     MyApp,
     HomePage,
     ScheduleSettingsPage,
-    SchedulePage
+    SchedulePage,
+    MySchedulesPage,
+    TabsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

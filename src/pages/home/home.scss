@@ -22,4 +22,22 @@ page-home {
       max-height: 200px;
     }
   }
+
+  .scroll-content {
+    background: linear-gradient(0deg, #9eb2c1, #ced6de)
+  }
+
+  .item-datetime {
+    background-color: transparent;
+    color: #fff;
+    text-shadow: 1px 1px rgba(0,0,0,0.1);
+
+    .item-inner {
+      border-bottom: 1px solid #fff !important;
+
+      .item-cover {
+        border-bottom: 1px solid #fff !important;
+      }
+    }
+  }
 }
