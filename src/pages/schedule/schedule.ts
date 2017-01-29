@@ -17,13 +17,13 @@ declare let google;
 export class SchedulePage implements OnInit {
   isLoading = true;
   scheduleSettings;
+  googleTransit;
   schedules;
   selectedIndex = -1;
   map;
 
   constructor(private navCtrl: NavController, navParams: NavParams, private eventlyService: EventlyService) {
     this.scheduleSettings = navParams.get('scheduleSettings');
-    this.scheduleSettings
   }
 
   ngOnInit() {

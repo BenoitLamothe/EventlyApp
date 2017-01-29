@@ -17,7 +17,7 @@ export class ScheduleSettingsPage implements OnInit {
   event;
   categories = [{label: 'Sport', isChecked: false, icon: 'football'}, {label: 'Spectacle', isChecked: false, icon: 'mic'}, {label: 'Plein air', isChecked: false, icon: 'leaf'}];
   periods = [{icon: 'alarm', value: 'morning', isChecked: false, isLocked: false}, {icon: 'sunny', value: 'afternoon', isChecked: false, isLocked: false}, {icon: 'moon', value: 'evening', isChecked: false, isLocked: false}];
-  transports = [{icon: 'walk', isChecked: true}, {icon: 'bicycle', isChecked: false}, {icon: 'car', isChecked: false}];
+  transports = [{icon: 'walk', value:'walking', isChecked: true}, {icon: 'bicycle', value:'bicycling', isChecked: false}, {icon: 'car', value:'driving', isChecked: false}];
 
   constructor(private navCtrl: NavController, navParams: NavParams, private eventlyService: EventlyService) {
     this.event = navParams.get('event');
@@ -77,7 +77,7 @@ export class ScheduleSettingsPage implements OnInit {
       availability: this.periods.filter(x => x.isChecked).map(x => x.value),
       criterias: [
         {name: 'categories', value: this.categories.filter(x => x.isChecked).map(x => x.label)},
-        {name: 'transport', value: this.transports.find(x=>x.isChecked).map(x=>x.)}
+        {name: 'transport', value: this.transports.find(x=>x.isChecked).value}
       ]
     };
 
