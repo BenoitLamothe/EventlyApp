@@ -1,7 +1,6 @@
 <ion-header>
   <ion-navbar color="lightgrey"></ion-navbar>
 </ion-header>
-
 <ion-content>
   <ev-loader *ngIf="isLoading"></ev-loader>
   <div *ngIf="!isLoading">
@@ -19,7 +18,6 @@
         </ion-col>
       </ion-row>
       <div *ngFor="let attraction of selectedAttractions; let last = last;">
-
         <ion-card [ngClass]="{'event-card': attraction.startTime}">
           <ion-grid>
             <ion-row>
@@ -29,10 +27,14 @@
               <ion-col width-75>
                 <h2>{{attraction.name}}</h2>
                 <ion-row>
-                  <ion-col><span>Type: {{attraction.category}}</span></ion-col>
+                  <ion-col>
+                    <span>Type: {{attraction.category}}</span>
+                  </ion-col>
                 </ion-row>
                 <ion-row>
-                  <ion-col><span>Où: {{attraction.location}}</span></ion-col>
+                  <ion-col>
+                    <span>Où: {{attraction.location}}</span>
+                  </ion-col>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -47,6 +49,12 @@
         </div>
       </div>
     </ion-grid>
+    <button ion-button
+            full
+            class="info-button bold"
+            color="white"
+            (click)="saveSchedule()">Sauvegarder
+    </button>
   </div>
   <div id="map"></div>
 </ion-content>

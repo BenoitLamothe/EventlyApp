@@ -5,7 +5,7 @@
  * Created by Yann on 1/28/2017.
  */
 import {Component, OnInit, ApplicationRef} from '@angular/core';
-import {NavParams, NavController} from "ionic-angular";
+import {NavParams, NavController, ToastController} from "ionic-angular";
 import {EventlyService} from "../../services/evently-service";
 import moment from "moment";
 import set = Reflect.set;
@@ -20,15 +20,15 @@ export class SchedulePage implements OnInit {
   isLoading = true;
   scheduleSettings;
   googleTransit;
-  schedules;
   selectedAttractions;
   map;
+  schedule;
   googleMapsDistanceService;
   googleMapsDirectionService;
   moment;
   directionsDisplay;
 
-  constructor(private navCtrl: NavController, navParams: NavParams, private eventlyService: EventlyService, private appRef: ApplicationRef) {
+  constructor(private navCtrl: NavController, navParams: NavParams, private eventlyService: EventlyService, private appRef: ApplicationRef, public toastCtrl: ToastController) {
     this.scheduleSettings = navParams.get('scheduleSettings');
     this.googleTransit = this.scheduleSettings.criterias.find(x => x.name === 'transport').value;
     this.googleMapsDistanceService = new google.maps.DistanceMatrixService();
@@ -43,8 +43,8 @@ export class SchedulePage implements OnInit {
   selectNewSchedule() {
     this.isLoading = true;
     this.eventlyService.sendScheduleSetting(this.scheduleSettings).subscribe(response => {
-      const schedule = response.json();
-      this.selectedAttractions = [...schedule.beforeAttractions, schedule.event, ...schedule.afterAttractions];
+      this.schedule = response.json();
+      this.selectedAttractions = [...this.schedule.beforeAttractions, this.schedule.event, ...this.schedule.afterAttractions];
       console.log(this.selectedAttractions);
 
       const distanceMatrixQuery = {
@@ -112,5 +112,13 @@ export class SchedulePage implements OnInit {
         "stylers": [{"color": "#ffffff"}]
       }]
     });
+  }
+
+  saveSchedule(){
+    this.eventlyService.addMySchedule(this.selectedAttractions);
+    this.toastCtrl.create({
+      message: 'Votre horaire a été sauvegardé',
+      duration: 4000
+    }).present();
   }
 }
