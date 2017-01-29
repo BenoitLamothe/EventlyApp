@@ -85,6 +85,11 @@ page-home {
       }
     }
   }
+  .toolbar-content {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+  }
 
   .no-data {
     margin-top:20px;
@@ -94,9 +99,7 @@ page-home {
   }
 
   .remove-date {
-    position: absolute;
-    top: 29px;
-    right: 20px;
+    display: flex;
     font-size: 25px;
     color: white;
     text-shadow: 1px 1px rgba(0,0,0,0.1);
