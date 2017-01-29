@@ -33,7 +33,8 @@ export class EventlyService {
     localStorage.setItem(this.storageKey, JSON.stringify(this.mySchedules));
   }
 
-  public deleteMySchedule(scheduleIndex) {
+  public deleteMySchedule(mySchedule) {
+    const scheduleIndex = this.mySchedules.findIndex(x=>x.name === mySchedule.name);
     if (scheduleIndex > -1) {
       this.mySchedules.splice(scheduleIndex, 1);
     }
