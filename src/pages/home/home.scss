@@ -1,20 +1,27 @@
 page-home {
 
-  .category-container {
-    height: 120px;
-    .date-display {
-      color:white;
-      font-size: 29px;
-      padding: 25px 10px;
-    }
-  }
-
   .info-button {
     margin: 0;
   }
 
   .event-card {
-    margin-bottom:0;
+    margin-bottom: 0;
+
+    .category-container {
+        h2, p {
+          color: #fff;
+        }
+
+        .button {
+          background-color: rgba(255, 255, 255, 0.5);
+          border-radius: 3px;
+          border: none;
+        }
+    }
+
+    .card-content {
+      height: 56px;
+    }
   }
 
   .event-details-card {
@@ -33,10 +40,10 @@ page-home {
     text-shadow: 1px 1px rgba(0,0,0,0.1);
 
     .item-inner {
-      border-bottom: 1px solid #fff !important;
+      border-bottom: none !important;
 
-      .item-cover {
-        border-bottom: 1px solid #fff !important;
+      .input-wrapper .label {
+        color: #fff;
       }
     }
   }

@@ -31,3 +31,12 @@
 .toolbar-background {
     border: none !important;
 }
+
+.default-category {
+    background: url('http://www.oscars.org/sites/oscars/files/styles/hero_image_wide_default/public/sgt_0.jpg?itok=1aRxXStQ') no-repeat; 
+    background-size: 100%;
+}
+
+.header-md::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+    background: none;
+}
