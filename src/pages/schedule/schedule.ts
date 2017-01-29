@@ -21,215 +21,64 @@ export class SchedulePage implements OnInit {
   scheduleSettings;
   googleTransit;
   schedules;
-  selectedIndex = -1;
   selectedAttractions;
   map;
-  googleMapsService;
+  googleMapsDistanceService;
+  googleMapsDirectionService;
   moment;
+  directionsDisplay;
 
   constructor(private navCtrl: NavController, navParams: NavParams, private eventlyService: EventlyService, private appRef: ApplicationRef) {
     this.scheduleSettings = navParams.get('scheduleSettings');
     this.googleTransit = this.scheduleSettings.criterias.find(x => x.name === 'transport').value;
-    this.googleMapsService = new google.maps.DistanceMatrixService();
+    this.googleMapsDistanceService = new google.maps.DistanceMatrixService();
+    this.googleMapsDirectionService = new google.maps.DirectionsService;
     this.moment = moment;
   }
 
   ngOnInit() {
-    this.loadMap();
-    this.schedules = {
-      "event": {
-        "id": 1,
-        "name": "Match d'impro du MITES",
-        "lat": 46.5451,
-        "long": -72.7506,
-        "location": "Salon Wabasso de la shop du Trou du diable",
-        "startTime": "2017-01-29T19:00:00.000-05:00",
-        "endTime": "2017-01-28T19:00:00.000-05:00",
-        "description": "Dans le cadre du weekend du 11e anniversaire du Trou du diable, les membres du M.I.T.E.S. vous offrent une soirée d'improvisation avec la thématique de leurs 6 années au Trou du diable.Salon Wabasso de la shop du Trou du diable19h00 à 22h00 (ouverture des portes à 18h30)gratuit",
-        "link": "http://www.troududiable.com/evenement/match-dimpro-du-mites/",
-        "price": 0,
-        "priceDisplay": "gratuit",
-        "images": [
-          "https://storage.googleapis.com/evvnt_assets/16e13c8d77ba1cbb4bd3ba4410c57eeb.jpg",
-          "https://storage.googleapis.com/evvnt_assets/16e13c8d77ba1cbb4bd3ba4410c57eeb.jpg",
-          "https://storage.googleapis.com/evvnt_assets/6f7aada4a739c0f6b4512be91e26a43d.jpg"
-        ]
-      },
-      "attractions": [
-        [
-          {
-            "id": 1,
-            "name": "Microbrasserie Le Trou du Diable",
-            "lat": 46.5402,
-            "long": -72.7533,
-            "location": "412 Willow Avenue, Shawinigan, QC, G9N 1X2, CA",
-            "hours": "[{\"is_overnight\":false,\"start\":\"1500\",\"end\":\"2300\",\"day\":0},{\"is_overnight\":false,\"start\":\"1500\",\"end\":\"2300\",\"day\":1},{\"is_overnight\":true,\"start\":\"1500\",\"end\":\"0100\",\"day\":2},{\"is_overnight\":true,\"start\":\"1500\",\"end\":\"0100\",\"day\":3},{\"is_overnight\":true,\"start\":\"1500\",\"end\":\"0300\",\"day\":4},{\"is_overnight\":true,\"start\":\"1500\",\"end\":\"0300\",\"day\":5}]",
-            "hoursShift": 63,
-            "description": "",
-            "link": "https://www.yelp.com/biz/microbrasserie-le-trou-du-diable-shawinigan?adjust_creative=GC3WLLw32YS0Zb07CvVg1Q&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=GC3WLLw32YS0Zb07CvVg1Q",
-            "phone": "+18195379151",
-            "website": "",
-            "reviewStars": 0,
-            "priceRange": "$$",
-            "categories": "Pubs, French, Brasseries",
-            "duration": 60
-          },
-          {
-            "id": 37,
-            "name": "Recycle-Vert",
-            "lat": 46.3542,
-            "long": -72.5827,
-            "location": "nullTrois-Rivières, QC, G8Y 4R2, CA",
-            "hours": "[{\"is_overnight\":false,\"start\":\"0900\",\"end\":\"1700\",\"day\":0},{\"is_overnight\":false,\"start\":\"0900\",\"end\":\"1700\",\"day\":1},{\"is_overnight\":false,\"start\":\"0900\",\"end\":\"1700\",\"day\":2},{\"is_overnight\":false,\"start\":\"0900\",\"end\":\"1700\",\"day\":3},{\"is_overnight\":false,\"start\":\"0900\",\"end\":\"1700\",\"day\":4},{\"is_overnight\":false,\"start\":\"0900\",\"end\":\"1700\",\"day\":5},{\"is_overnight\":false,\"start\":\"0900\",\"end\":\"1700\",\"day\":6}]",
-            "hoursShift": 127,
-            "description": "",
-            "link": "https://www.yelp.com/biz/recycle-vert-trois-rivi%C3%A8res?adjust_creative=GC3WLLw32YS0Zb07CvVg1Q&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=GC3WLLw32YS0Zb07CvVg1Q",
-            "phone": "+18447773292",
-            "website": "",
-            "reviewStars": 0,
-            "categories": "Junk Removal & Hauling, Recycling Center",
-            "duration": 60
-          },
-          {
-            "id": 36,
-            "name": "Camping Domaine Lac Et Foret",
-            "lat": 46.8432,
-            "long": -72.4876,
-            "location": "131 12E Av Lac Croche S, Sainte-Thecle, QC, G0X 3G0, CA",
-            "hours": "",
-            "hoursShift": 0,
-            "description": "",
-            "link": "https://www.yelp.com/biz/camping-domaine-lac-et-foret-sainte-thecle?adjust_creative=GC3WLLw32YS0Zb07CvVg1Q&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=GC3WLLw32YS0Zb07CvVg1Q",
-            "phone": "+14182893871",
-            "website": "",
-            "reviewStars": 0,
-            "categories": "",
-            "duration": 60
-          },
-          {
-            "id": 3,
-            "name": "Le Radoteux",
-            "lat": 46.5404,
-            "long": -72.7505,
-            "location": "610 5e Rue de-la-Pointe, Shawinigan, QC, G9N 1E9, CA",
-            "hours": "",
-            "hoursShift": 0,
-            "description": "",
-            "link": "https://www.yelp.com/biz/le-radoteux-shawinigan?adjust_creative=GC3WLLw32YS0Zb07CvVg1Q&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=GC3WLLw32YS0Zb07CvVg1Q",
-            "phone": "+18195374545",
-            "website": "",
-            "reviewStars": 0,
-            "categories": "Lounges, Canadian (New)",
-            "duration": 60
-          }
-        ],
-        [
-          {
-            "id": 37,
-            "name": "Recycle-Vert",
-            "lat": 46.3542,
-            "long": -72.5827,
-            "location": "nullTrois-Rivières, QC, G8Y 4R2, CA",
-            "hours": "[{\"is_overnight\":false,\"start\":\"0900\",\"end\":\"1700\",\"day\":0},{\"is_overnight\":false,\"start\":\"0900\",\"end\":\"1700\",\"day\":1},{\"is_overnight\":false,\"start\":\"0900\",\"end\":\"1700\",\"day\":2},{\"is_overnight\":false,\"start\":\"0900\",\"end\":\"1700\",\"day\":3},{\"is_overnight\":false,\"start\":\"0900\",\"end\":\"1700\",\"day\":4},{\"is_overnight\":false,\"start\":\"0900\",\"end\":\"1700\",\"day\":5},{\"is_overnight\":false,\"start\":\"0900\",\"end\":\"1700\",\"day\":6}]",
-            "hoursShift": 127,
-            "description": "",
-            "link": "https://www.yelp.com/biz/recycle-vert-trois-rivi%C3%A8res?adjust_creative=GC3WLLw32YS0Zb07CvVg1Q&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=GC3WLLw32YS0Zb07CvVg1Q",
-            "phone": "+18447773292",
-            "website": "",
-            "reviewStars": 0,
-            "categories": "Junk Removal & Hauling, Recycling Center",
-            "duration": 60
-          },
-          {
-            "id": 3,
-            "name": "Le Radoteux",
-            "lat": 46.5404,
-            "long": -72.7505,
-            "location": "610 5e Rue de-la-Pointe, Shawinigan, QC, G9N 1E9, CA",
-            "hours": "",
-            "hoursShift": 0,
-            "description": "",
-            "link": "https://www.yelp.com/biz/le-radoteux-shawinigan?adjust_creative=GC3WLLw32YS0Zb07CvVg1Q&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=GC3WLLw32YS0Zb07CvVg1Q",
-            "phone": "+18195374545",
-            "website": "",
-            "reviewStars": 0,
-            "categories": "Lounges, Canadian (New)",
-            "duration": 60
-          },
-          {
-            "id": 36,
-            "name": "Camping Domaine Lac Et Foret",
-            "lat": 46.8432,
-            "long": -72.4876,
-            "location": "131 12E Av Lac Croche S, Sainte-Thecle, QC, G0X 3G0, CA",
-            "hours": "",
-            "hoursShift": 0,
-            "description": "",
-            "link": "https://www.yelp.com/biz/camping-domaine-lac-et-foret-sainte-thecle?adjust_creative=GC3WLLw32YS0Zb07CvVg1Q&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=GC3WLLw32YS0Zb07CvVg1Q",
-            "phone": "+14182893871",
-            "website": "",
-            "reviewStars": 0,
-            "categories": "",
-            "duration": 60
-          },
-          {
-            "id": 1,
-            "name": "Microbrasserie Le Trou du Diable",
-            "lat": 46.5402,
-            "long": -72.7533,
-            "location": "412 Willow Avenue, Shawinigan, QC, G9N 1X2, CA",
-            "hours": "[{\"is_overnight\":false,\"start\":\"1500\",\"end\":\"2300\",\"day\":0},{\"is_overnight\":false,\"start\":\"1500\",\"end\":\"2300\",\"day\":1},{\"is_overnight\":true,\"start\":\"1500\",\"end\":\"0100\",\"day\":2},{\"is_overnight\":true,\"start\":\"1500\",\"end\":\"0100\",\"day\":3},{\"is_overnight\":true,\"start\":\"1500\",\"end\":\"0300\",\"day\":4},{\"is_overnight\":true,\"start\":\"1500\",\"end\":\"0300\",\"day\":5}]",
-            "hoursShift": 63,
-            "description": "",
-            "link": "https://www.yelp.com/biz/microbrasserie-le-trou-du-diable-shawinigan?adjust_creative=GC3WLLw32YS0Zb07CvVg1Q&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=GC3WLLw32YS0Zb07CvVg1Q",
-            "phone": "+18195379151",
-            "website": "",
-            "reviewStars": 0,
-            "priceRange": "$$",
-            "categories": "Pubs, French, Brasseries",
-            "duration": 60
-          }
-        ]
-      ]
-    };
     this.selectNewSchedule();
-
-
-    // this.eventlyService.sendScheduleSetting(this.scheduleSettings).subscribe(response => {
-    //   this.schedules = response.json();
-    //   this.selectedIndex = this.schedules.attractions[0];
-    //   this.isLoading = false;
-    //   this.loadMap();
-    //   console.log(this.schedules);
-    // })
   }
 
   selectNewSchedule() {
     this.isLoading = true;
-    this.selectedIndex = this.selectedIndex + 1;
-    if (this.selectedIndex >= this.schedules.attractions.length) {
-      this.selectedIndex = 0;
-    }
+    this.eventlyService.sendScheduleSetting(this.scheduleSettings).subscribe(response => {
+      const schedule = response.json();
+      schedule.event.duration = 120;
+      this.selectedAttractions = [...schedule.beforeAttractions, schedule.event, ...schedule.afterAttractions];
+      console.log(this.selectedAttractions);
 
-    this.selectedAttractions = [...this.schedules.attractions[this.selectedIndex]];
-    const distanceMatrixQuery = {
-      travelMode: this.googleTransit,
-      origins: this.selectedAttractions.slice(0, this.selectedAttractions.length - 1).map(x => ({lat: x.lat, lng: x.long})),
-      destinations: this.selectedAttractions.slice(1, this.selectedAttractions.length).map(x => ({lat: x.lat, lng: x.long})),
-    };
+      const distanceMatrixQuery = {
+        travelMode: this.googleTransit,
+        origins: this.selectedAttractions.slice(0, this.selectedAttractions.length - 1).map(x => ({lat: x.lat, lng: x.long})),
+        destinations: this.selectedAttractions.slice(1, this.selectedAttractions.length).map(x => ({lat: x.lat, lng: x.long})),
+      };
+      this.loadMap();
 
-    this.googleMapsService.getDistanceMatrix(distanceMatrixQuery, this.processDistanceMatrix.bind(this));
+      this.googleMapsDistanceService.getDistanceMatrix(distanceMatrixQuery, this.processDistanceMatrix.bind(this));
+      this.directionsDisplay = new google.maps.DirectionsRenderer;
+      this.directionsDisplay.setMap(this.map);
+
+      const firstAttraction = this.selectedAttractions[0];
+      const lastAttraction = this.selectedAttractions[this.selectedAttractions.length - 1];
+      this.googleMapsDirectionService.route({
+        travelMode: this.googleTransit,
+        origin: new google.maps.LatLng(firstAttraction.lat, firstAttraction.long),
+        destination: new google.maps.LatLng(lastAttraction.lat, lastAttraction.long),
+        waypoints: this.selectedAttractions.slice(1, this.selectedAttractions.length - 1).map(x => ({location: {lat: x.lat, lng: x.long}, stopover: false})),
+      }, (response) => {
+        console.log(response);
+        this.directionsDisplay.setDirections(response);
+      })
+    });
   }
 
   processDistanceMatrix(distanceMatrix) {
-    console.log(distanceMatrix);
     for (let i = 0; i < this.selectedAttractions.length - 1; i++) {
       const attraction = this.selectedAttractions[i];
       attraction.travelTime = distanceMatrix.rows[i].elements[i].duration.value;
-      console.log(attraction.travelTime)
     }
     this.isLoading = false;
-    console.log(this.selectedAttractions)
     this.appRef.tick();
   }
 

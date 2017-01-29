@@ -16,14 +16,11 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <button class="info-button"
-          ion-button
-          full
-          (click)="navigateToSchedulePage()">
-    GO TO SCHEDULE->remove me
-  </button>
   <ev-loader *ngIf="isLoading"></ev-loader>
   <div *ngIf="!isLoading">
+    <div *ngIf="(events | evDateFilter:'startTime':filterDate).length === 0" class="no-data">
+      Il n'y a aucun événement pour la date sélectionné
+    </div>
     <div *ngFor="let event of events | evDateFilter:'startTime':filterDate">
       <ion-card class="event-card"
                 (click)="selectEventId(event.id)">

@@ -16,7 +16,6 @@ export class EvDateFilterPipe implements PipeTransform {
     } else if (array) {
       return array.filter(item => {
         if (moment(item[key]).isSame(date, 'd')) {
-          debugger;
           console.log(new Date(item[key]).getDay());
           return true;
         }

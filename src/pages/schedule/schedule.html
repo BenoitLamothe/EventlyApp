@@ -30,7 +30,7 @@
                 <ion-row>
                   <ion-col width-33>Début: 12h</ion-col>
                   <ion-col width-33>Fin: 18h</ion-col>
-                  <ion-col width-33>Durée: 6h</ion-col>
+                  <ion-col width-33>Durée: {{moment.duration(attraction.duration, "minutes").hours()}} h</ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col>Où: {{attraction.location}}</ion-col>
@@ -39,7 +39,8 @@
             </ion-row>
           </ion-grid>
         </ion-card>
-        <div *ngIf="!last" style="text-align: center">
+        <div *ngIf="!last"
+             class="time-container">
           <div class="vertical-line"></div>
           <div class="time-travel">
             {{moment.duration(attraction.travelTime, "seconds").humanize()}}
