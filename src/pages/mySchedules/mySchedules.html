@@ -1,4 +1,7 @@
 <ion-content>
+  <div *ngIf="schedules.length === 0" class="no-data">
+    Vous n'avez sauvegarder aucun horaire
+  </div>
   <div *ngFor="let schedule of schedules">
     <ion-card class="event-card">
       <div class="category-container default-category"
