@@ -29,6 +29,27 @@ page-home {
           height: 1.6em !important;
           margin-top: 0.6em;
         }
+
+
+        &.comedy, &.theater{
+          background-color: #0F6177 ;//#EFCA08;
+        }
+
+        &.activities, &.family {
+          background-color: #0B8389;//#F49F0A;
+        }
+
+        &.shows, &.music {
+          background-color: #1BA39C;//#F08700;
+        }
+
+        &.sport, &.other {
+          background-color: #1BBC9B;// #00A6A6;
+        }
+
+        &.culture, &.business {
+          background-color: #16A086;//#BBDEF0;
+        }
     }
 
     .card-content {
