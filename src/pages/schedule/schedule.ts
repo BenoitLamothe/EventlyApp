@@ -84,7 +84,11 @@ export class SchedulePage implements OnInit {
   processDistanceMatrix(distanceMatrix) {
     for (let i = 0; i < this.selectedAttractions.length - 1; i++) {
       const attraction = this.selectedAttractions[i];
-      attraction.travelTime = distanceMatrix.rows[i].elements[i].duration.value;
+      if(distanceMatrix.rows[i].elements[i].status === 'ZERO_RESULTS') {
+        attraction.travelTime = -1;
+      } else {
+        attraction.travelTime = distanceMatrix.rows[i].elements[i].duration.value;
+      }
     }
     this.isLoading = false;
     this.appRef.tick();

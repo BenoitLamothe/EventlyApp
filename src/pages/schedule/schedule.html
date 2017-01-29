@@ -20,7 +20,7 @@
              class="time-container">
           <div class="vertical-line"></div>
           <div class="time-travel">
-            {{moment.duration(attraction.travelTime, "seconds").humanize()}}
+            {{attraction.travelTime > 0 ? moment.duration(attraction.travelTime, "seconds").humanize() : 'Non disponible'}}
           </div>
         </div>
       </div>
