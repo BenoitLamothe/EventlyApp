@@ -14,7 +14,7 @@
           </ion-row>
         </ion-col>
       </ion-row>
-      <div *ngFor="let attraction of schedules.attractions[selectedIndex]; let last = last;">
+      <div *ngFor="let attraction of selectedAttractions; let last = last;">
         <ion-card>
           <ion-grid>
             <ion-row>
@@ -43,6 +43,6 @@
         </div>
       </div>
     </ion-grid>
-    <div id="map"></div>
   </div>
+  <div id="map"></div>
 </ion-content>

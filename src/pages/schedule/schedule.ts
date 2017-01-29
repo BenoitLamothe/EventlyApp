@@ -4,10 +4,11 @@
 /**
  * Created by Yann on 1/28/2017.
  */
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ApplicationRef} from '@angular/core';
 import {NavParams, NavController} from "ionic-angular";
 import {EventlyService} from "../../services/evently-service";
 import moment from "moment";
+import set = Reflect.set;
 
 declare let google;
 @Component({
@@ -21,11 +22,12 @@ export class SchedulePage implements OnInit {
   googleTransit;
   schedules;
   selectedIndex = -1;
+  selectedAttractions;
   map;
   googleMapsService;
   moment;
 
-  constructor(private navCtrl: NavController, navParams: NavParams, private eventlyService: EventlyService) {
+  constructor(private navCtrl: NavController, navParams: NavParams, private eventlyService: EventlyService, private appRef: ApplicationRef) {
     this.scheduleSettings = navParams.get('scheduleSettings');
     this.googleTransit = this.scheduleSettings.criterias.find(x => x.name === 'transport').value;
     this.googleMapsService = new google.maps.DistanceMatrixService();
@@ -33,6 +35,7 @@ export class SchedulePage implements OnInit {
   }
 
   ngOnInit() {
+    this.loadMap();
     this.schedules = {
       "event": {
         "id": 1,
@@ -190,10 +193,7 @@ export class SchedulePage implements OnInit {
       ]
     };
     this.selectNewSchedule();
-    this.isLoading = false;
-    setTimeout(() => {
-      this.loadMap();
-    });
+
 
     // this.eventlyService.sendScheduleSetting(this.scheduleSettings).subscribe(response => {
     //   this.schedules = response.json();
@@ -205,26 +205,32 @@ export class SchedulePage implements OnInit {
   }
 
   selectNewSchedule() {
+    this.isLoading = true;
     this.selectedIndex = this.selectedIndex + 1;
-    if (this.selectedIndex > this.schedules.attractions.length) {
+    if (this.selectedIndex >= this.schedules.attractions.length) {
       this.selectedIndex = 0;
     }
 
-    const attractions = this.schedules.attractions[this.selectedIndex];
+    this.selectedAttractions = [...this.schedules.attractions[this.selectedIndex]];
     const distanceMatrixQuery = {
       travelMode: this.googleTransit,
-      origins: attractions.slice(0, attractions.length - 1).map(x => ({lat: x.lat, lng: x.long})),
-      destinations: attractions.slice(1, attractions.length).map(x => ({lat: x.lat, lng: x.long})),
+      origins: this.selectedAttractions.slice(0, this.selectedAttractions.length - 1).map(x => ({lat: x.lat, lng: x.long})),
+      destinations: this.selectedAttractions.slice(1, this.selectedAttractions.length).map(x => ({lat: x.lat, lng: x.long})),
     };
 
-    this.googleMapsService.getDistanceMatrix(distanceMatrixQuery, (distanceMatrix) => {
-      console.log(distanceMatrix);
-      for (let i = 0; i < attractions.length - 1; i++) {
-        const attraction = attractions[i];
-        attraction.travelTime = distanceMatrix.rows[i].elements[i].duration.value;
-        console.log(attraction.travelTime)
-      }
-    });
+    this.googleMapsService.getDistanceMatrix(distanceMatrixQuery, this.processDistanceMatrix.bind(this));
+  }
+
+  processDistanceMatrix(distanceMatrix) {
+    console.log(distanceMatrix);
+    for (let i = 0; i < this.selectedAttractions.length - 1; i++) {
+      const attraction = this.selectedAttractions[i];
+      attraction.travelTime = distanceMatrix.rows[i].elements[i].duration.value;
+      console.log(attraction.travelTime)
+    }
+    this.isLoading = false;
+    console.log(this.selectedAttractions)
+    this.appRef.tick();
   }
 
   loadMap() {
