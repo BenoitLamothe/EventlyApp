@@ -44,11 +44,24 @@ export class SchedulePage implements OnInit {
     this.selectNewSchedule();
   }
 
-  selectNewSchedule() {
+  selectNewSchedule(randomize = false) {
     this.isLoading = true;
+    this.scheduleSettings.randomize = randomize;
     this.eventlyService.sendScheduleSetting(this.scheduleSettings).subscribe(response => {
       const schedule = response.json();
-      this.selectedAttractions = [...schedule.beforeAttractions, schedule.event, ...schedule.afterAttractions];
+      this.selectedAttractions = [...schedule.beforeAttractions, schedule.event, ...schedule.afterAttractions].map(x=>Object.assign(x, {isEvent: x.startTime!=null}));
+      this.selectedAttractions.forEach(attraction=>{
+        if (attraction.rating && attraction.rating > 0) {
+          attraction.stars = Array(parseInt(attraction.rating)).fill('star');
+
+          // Needs a half star
+          if (attraction.rating - parseInt(attraction.rating) >= 0.4) {
+            attraction.stars.push('star-half')
+          }
+        } else {
+          attraction.stars = [];
+        }
+      });
       this.event = schedule.event;
       console.log(this.selectedAttractions);
 

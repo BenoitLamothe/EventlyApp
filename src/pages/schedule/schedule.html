@@ -1,5 +1,12 @@
 <ion-header>
-  <ion-navbar color="lightgrey"></ion-navbar>
+  <ion-navbar color="lightgrey">
+    <button [ngClass]="{hidden: isLoading}"
+            ion-button
+            class="info-button bold regenerate-button"
+            color="white"
+            (click)="selectNewSchedule(true)">Regénérer
+    </button>
+  </ion-navbar>
 </ion-header>
 <ion-content padding>
   <ev-loader *ngIf="isLoading"></ev-loader>
@@ -9,8 +16,20 @@
         {{ moment(event.startTime).format('LL') }}
       </ion-item>
       <div *ngFor="let attraction of selectedAttractions; let last = last;">
-        <ion-card [ngClass]="{'event-card': attraction.startTime}">
-          <div class="category-container {{attraction.category ? 'event' : 'default-category'}}"></div>
+        <ion-card [ngClass]="{'event-card': attraction.isEvent}">
+          <div class="category-container {{attraction.category ? 'event' : 'default-category'}}">
+            <ion-grid>
+              <ion-row>
+                <ion-col width-80>
+                  <span *ngIf="attraction.isEvent">{{moment(attraction.startTime).format('LT')}}</span>
+                </ion-col>
+                <ion-col width-20>
+                  <ion-icon *ngFor="let star of attraction.stars"
+                            name="{{star}}"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
           <ion-card-content class="card-content">
             <h2> {{attraction.name}} </h2>
             <p> {{attraction.location}} </p>
