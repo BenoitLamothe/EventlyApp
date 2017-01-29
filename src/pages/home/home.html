@@ -7,18 +7,18 @@
                   cancelText="Annuler"
                   [min]="minDate"
                   [max]="maxDate"
-                  [(ngModel)]="filterDate"></ion-datetime>
+                  [(ngModel)]="filterDate" (ionChange)="setUnixFilterDate(filterDate)"></ion-datetime>
   </ion-item>
   <ev-loader *ngIf="isLoading"></ev-loader>
   <div *ngIf="!isLoading">
-    <div *ngFor="let event of events | evFilter:'startTime':filterDate">
+    <div *ngFor="let event of events | evDateFilter:'startTime':unixFilterDate">
       <ion-card class="event-card">
         <div class="category-container"
              style="background: url('http://www.oscars.org/sites/oscars/files/styles/hero_image_wide_default/public/sgt_0.jpg?itok=1aRxXStQ') no-repeat; background-size: 100%;">
           <div class="date-display">
-            <span>{{event.startTime | amDateFormat:'DD MMMM'}}</span>
+            <span>{{(event.startTime | amFromUnix) | amDateFormat:'DD MMMM'}}</span>
             <br/>
-            <span>{{event.startTime | date:"MM/dd/yy"}}</span>
+            <span>{{(event.startTime| amFromUnix) | amDateFormat:'YYYY'}}</span>
           </div>
         </div>
         <ion-card-content class="card-content">

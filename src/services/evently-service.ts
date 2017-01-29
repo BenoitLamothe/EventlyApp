@@ -12,6 +12,10 @@ export class EventlyService {
   constructor(private http: Http) {
   }
 
+  public sendScheduleSetting(scheduleSetting) {
+    return this.http.post(`${this.url}/schedule`, scheduleSetting);
+  }
+
   public getAllEvents(){
     return this.http.get(`${this.url}/events`);
   }

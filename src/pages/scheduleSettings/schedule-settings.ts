@@ -4,6 +4,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavParams, NavController} from "ionic-angular";
 import {SchedulePage} from "../schedule/schedule";
+import {EventlyService} from "../../services/evently-service";
 
 @Component({
   selector: 'page-schedule-settings',
@@ -12,10 +13,10 @@ import {SchedulePage} from "../schedule/schedule";
 export class ScheduleSettingsPage implements OnInit {
   event;
   categories = [{label: 'Sport', isChecked: false}, {label: 'Spectacle', isChecked: false}, {label: 'Autre', isChecked: false}, {label: 'Last one', isChecked: false}];
-  periods = [{icon:'alarm', isChecked: false},{icon:'sunny', isChecked: false},{icon:'moon', isChecked: false}];
-  transports = [{icon:'walk', isChecked:true}, {icon:'bicycle', isChecked:false}, {icon:'car', isChecked:false}];
+  periods = [{icon: 'alarm', value:'morning', isChecked: false}, {icon: 'sunny',value:'afternoon', isChecked: false}, {icon: 'moon', value:'evening', isChecked: false}];
+  transports = [{icon: 'walk', isChecked: true}, {icon: 'bicycle', isChecked: false}, {icon: 'car', isChecked: false}];
 
-  constructor(private navCtrl: NavController, navParams: NavParams) {
+  constructor(private navCtrl: NavController, navParams: NavParams, private eventlyService: EventlyService) {
     this.event = navParams.get('event');
   }
 
@@ -39,14 +40,22 @@ export class ScheduleSettingsPage implements OnInit {
   }
 
   toggleTransport(transport) {
-    const currentTransportChecked = this.transports.find(x=>x.isChecked);
+    const currentTransportChecked = this.transports.find(x => x.isChecked);
     currentTransportChecked.isChecked = false;
     transport.isChecked = true;
   }
 
-  navigateToSchedulePage(event) {
-    this.navCtrl.push(SchedulePage, {
-      event
-    });
+  navigateToSchedulePage() {
+    debugger
+    const scheduleSetting = {
+      eventId: this.event.id,
+      availability:this.periods.filter(x=>x.isChecked).map(x=>x.value),
+      criterias: [{name:'categories', value:this.categories.filter(x=>x.isChecked).map(x=>x.label)}
+      ]
+    };
+    this.eventlyService.sendScheduleSetting(scheduleSetting).subscribe(response => {
+      this.navCtrl.push(SchedulePage, response.json());
+    })
+
   }
 }

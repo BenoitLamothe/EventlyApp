@@ -17,6 +17,7 @@ export class HomePage implements OnInit {
   minDate = '2017-01-29';
   maxDate = '2017-12-31';
   filterDate;
+  unixFilterDate;
   selectedEventId = 0;
 
   constructor(public navCtrl: NavController, private eventlyService: EventlyService) {
@@ -39,5 +40,9 @@ export class HomePage implements OnInit {
     this.navCtrl.push(ScheduleSettingsPage, {
       event
     });
+  }
+
+  setUnixFilterDate(date){
+    this.unixFilterDate = moment(date).unix();
   }
 }
