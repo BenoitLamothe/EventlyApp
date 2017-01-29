@@ -11,7 +11,7 @@ import {SchedulePage} from "../schedule/schedule";
 })
 export class ScheduleSettingsPage implements OnInit {
   event;
-  categories = [{label: 'Sport', isChecked: false}, {label: 'Spectacle', isChecked: false}, {label: 'Autre', isChecked: false}, {label: 'Last one', isChecked: false}];
+  categories = [{label: 'Sport', isChecked: false, icon: 'football'}, {label: 'Spectacle', isChecked: false, icon: 'mic'}, {label: 'Plein air', isChecked: false, icon: 'leaf'}];
   periods = [{icon:'alarm', isChecked: false},{icon:'sunny', isChecked: false},{icon:'moon', isChecked: false}];
   transports = [{icon:'walk', isChecked:true}, {icon:'bicycle', isChecked:false}, {icon:'car', isChecked:false}];
 

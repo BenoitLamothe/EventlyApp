@@ -40,3 +40,9 @@
 .header-md::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
     background: none;
 }
+
+.info-button {
+    border-top: 1px solid #9eb2c1;
+    color: #666;
+    background-color: #fff;
+}
