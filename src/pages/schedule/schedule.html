@@ -1,10 +1,11 @@
 <ion-header>
   <ion-navbar color="lightgrey">
-    <button [ngClass]="{hidden: isLoading}"
+    <button *ngIf="navCtrl.id !== 't0-1'" [ngClass]="{hidden: isLoading}"
             ion-button
             class="info-button bold regenerate-button"
             color="white"
-            (click)="selectNewSchedule(true)">Regénérer
+            (click)="selectNewSchedule(true)" icon-only small>
+            <ion-icon name="refresh"></ion-icon>
     </button>
   </ion-navbar>
 </ion-header>
@@ -20,12 +21,11 @@
           <div class="category-container {{attraction.category ? 'event' : 'default-category'}}">
             <ion-grid>
               <ion-row>
-                <ion-col width-80>
+                <ion-col width-67>
                   <span *ngIf="attraction.isEvent">{{moment(attraction.startTime).format('LT')}}</span>
                 </ion-col>
-                <ion-col width-20>
-                  <ion-icon *ngFor="let star of attraction.stars"
-                            name="{{star}}"></ion-icon>
+                <ion-col width-33>
+                  <ion-icon *ngFor="let star of attraction.stars" name="{{star}}"></ion-icon>
                 </ion-col>
               </ion-row>
             </ion-grid>

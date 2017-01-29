@@ -1,7 +1,7 @@
 <ion-content>
   <div *ngFor="let schedule of schedules">
     <ion-card class="event-card">
-      <div class="category-container default-category"
+      <div class="category-container {{schedule.event.category ? schedule.event.category.toLowerCase() : 'default-category'}}"
            (click)="navigateToSchedule(schedule)">
         <ion-grid>
           <ion-row>
