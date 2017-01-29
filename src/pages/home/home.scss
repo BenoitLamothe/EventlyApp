@@ -27,11 +27,14 @@ page-home {
         .button {
           color: #fff;
           height: 1.6em !important;
+          margin-top: 0.6em;
         }
     }
 
     .card-content {
       height: 56px;
+      padding: 7px 16px 14px 16px;
+
       h2, p {
         text-overflow: ellipsis;
         overflow: hidden;
@@ -70,5 +73,10 @@ page-home {
     font-size: 25px;
     color: white;
     text-shadow: 1px 1px rgba(0,0,0,0.1);
+
+    &.icon-ios {
+      top: 28px;
+      font-size: 36px;
+    }
   }
 }

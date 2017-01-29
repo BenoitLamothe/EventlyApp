@@ -1,18 +1,13 @@
-<ion-header>
-  <ion-navbar color="lightgrey"></ion-navbar>
-</ion-header>
+
 <ion-content>
-  <div padding>
-    <h2>Mes horaires sauvegardés</h2>
-  </div>
-  <ion-card class="event-card"
-            (click)="navigateToSchedule(schedule)">
+  <div *ngFor="let schedule of schedules">
+  <ion-card class="event-card" (click)="navigateToSchedule(schedule)">
     <div class="category-container default-category">
       <ion-grid>
         <ion-row>
           <ion-col width-80>
-            <h2>{{ moment(event.startTime).format('LL') }}</h2>
-            <p>{{moment(event.startTime).format('LT')}} à {{moment(event.endTime).format('LT')}}</p>
+            <h2>{{ moment(schedule.events[0].startTime).format('LL') }}</h2>
+            <p>{{moment(schedule.events[0].startTime).format('LT')}} à {{moment(schedule.events[schedule.events.length -1].endtime).format('LT')}}</p>
           </ion-col>
           <ion-col width-20>
             <ion-icon name="arrow-dropright"></ion-icon>
@@ -21,8 +16,8 @@
       </ion-grid>
     </div>
     <ion-card-content class="card-content">
-      <h2 style="padding-top: 3px;">
-        {{event.name}} </h2>
+      <h2 style="padding-top: 3px;"> {{schedule.name}} </h2>
     </ion-card-content>
   </ion-card>
+  </div>
 </ion-content>
