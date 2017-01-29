@@ -1,23 +1,23 @@
-
 <ion-content>
   <div *ngFor="let schedule of schedules">
-  <ion-card class="event-card">
-    <div class="category-container default-category" (click)="navigateToSchedule(schedule)">
-      <ion-grid>
-        <ion-row>
-          <ion-col width-80>
-            <h2>{{ moment(schedule.event.startTime).format('LL') }}</h2>
-            <p>à {{moment(schedule.event.startTime).format('LT')}}</p>
-          </ion-col>
-          <ion-col width-20>
-            <ion-icon name="arrow-dropright"></ion-icon>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-    <ion-card-content class="card-content">
-      <h2 style="padding-top:3px;">{{schedule.event.name}}</h2>
-    </ion-card-content>
-  </ion-card>
+    <ion-card class="event-card">
+      <div class="category-container default-category"
+           (click)="navigateToSchedule(schedule)">
+        <ion-grid>
+          <ion-row>
+            <ion-col width-80>
+              <h2>{{ moment(schedule.event.startTime).format('LL') }}</h2>
+              <p>à {{moment(schedule.event.startTime).format('LT')}}</p>
+            </ion-col>
+            <ion-col width-20>
+              <ion-icon name="arrow-dropright"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <ion-card-content class="card-content">
+        <h2 style="padding-top:3px;">{{schedule.event.name}}</h2>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>

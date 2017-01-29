@@ -7,14 +7,18 @@
       <h1>Catégories d'activités</h1>
     </ion-row>
     <ion-row wrap>
-      <ion-col width-33
+      <ion-col
+               width-33
                *ngFor="let category of categories">
-        <div class="button-toggle time"
+        <div class="button-toggle time {{category.values[0]}}"
              [ngClass]="{checked:category.isChecked}"
              (click)="toggleCategory(category)">
-          <ion-icon class="icon"
-                    md
-                    name="{{category.icon}}"></ion-icon>
+          <div class="center">
+            <ion-icon class="icon"
+                      md
+                      name="{{category.icon}}"></ion-icon>
+            <span>{{category.label}}</span>
+          </div>
         </div>
       </ion-col>
     </ion-row>
@@ -27,9 +31,11 @@
         <div class="button-toggle time"
              [ngClass]="{checked:period.isChecked}"
              (click)="togglePeriod(period)">
-          <ion-icon class="icon"
-                    md
-                    name="{{period.icon}}"></ion-icon>
+          <div class="center">
+            <ion-icon class="icon"
+                      md
+                      name="{{period.icon}}"></ion-icon>
+          </div>
         </div>
       </ion-col>
     </ion-row>
@@ -42,9 +48,11 @@
         <div class="button-toggle time"
              [ngClass]="{checked:transport.isChecked}"
              (click)="toggleTransport(transport)">
-          <ion-icon class="icon"
-                    md
-                    name="{{transport.icon}}"></ion-icon>
+          <div class="center">
+            <ion-icon class="icon"
+                      md
+                      name="{{transport.icon}}"></ion-icon>
+          </div>
         </div>
       </ion-col>
     </ion-row>

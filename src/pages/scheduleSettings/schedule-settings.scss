@@ -1,24 +1,57 @@
 page-schedule-settings {
+
+
+  .comedy, .theater {
+    background-color: #0F6177;
+  }
+
+  .activities, .family {
+    background-color: #0B8389;
+  }
+
+  .shows, .music {
+    background-color: #1BA39C;
+  }
+
+  .sport, .other {
+    background-color: #1BBC9B;
+  }
+
+  .culture, .business {
+    background-color: #16A086;
+  }
+
+
   .button-toggle {
     height: 100px;
-    width:100%;
+    width: 100%;
     background-color: #fff;
     color: grey;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
     opacity: 0.5;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 100px;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
     cursor: pointer;
 
-    &.category {
-
+    .center {
+      height: 100px;
+      width: 100%;
+      background-color: white;
+      color:gray;
+      text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+      word-wrap: break-word;
+      flex-direction: column;
+      white-space: normal;
+      justify-content: center;
+      display: flex;
+      text-align: center;
     }
 
+
     &.time {
-      .icon{
-        font-size:3.2em;
-        line-height: 100px;
+      .icon {
+        font-size: 3.2em;
       }
     }
 
@@ -41,7 +74,7 @@ page-schedule-settings {
 
   .bar-button-default-ios, .content-ios {
     color: #fff !important;
-    text-shadow: 1px 1px rgba(0,0,0,0.1);
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
   }
 
   .error-container {

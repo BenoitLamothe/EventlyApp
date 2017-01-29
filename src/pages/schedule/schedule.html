@@ -10,13 +10,12 @@
       </ion-item>
       <div *ngFor="let attraction of selectedAttractions; let last = last;">
         <ion-card [ngClass]="{'event-card': attraction.startTime}">
-          <div class="category-container {{attraction.category ? 'event' : 'default-category'}}">
-          </div>
+          <div class="category-container {{attraction.category ? 'event' : 'default-category'}}"></div>
           <ion-card-content class="card-content">
             <h2> {{attraction.name}} </h2>
             <p> {{attraction.location}} </p>
           </ion-card-content>
-          </ion-card>
+        </ion-card>
         <div *ngIf="!last"
              class="time-container">
           <div class="vertical-line"></div>
@@ -24,19 +23,16 @@
             {{moment.duration(attraction.travelTime, "seconds").humanize()}}
           </div>
         </div>
-
       </div>
-      <ion-row>
-        
-      </ion-row>
+      <ion-row></ion-row>
     </ion-grid>
-    <button *ngIf="navCtrl.id !== 't0-1'" ion-button
-            full 
+    <button *ngIf="navCtrl.id !== 't0-1'"
+            ion-button
+            full
             class="info-button bold"
             color="white"
             (click)="saveSchedule()">Sauvegarder
     </button>
-    
   </div>
   <div id="map"></div>
 </ion-content>

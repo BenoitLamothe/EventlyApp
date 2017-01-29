@@ -27,11 +27,11 @@
         <div class="category-container {{event.category ? categoryToClass(event.category) : 'default-category'}}">
           <ion-grid>
             <ion-row>
-              <ion-col width-80>
+              <ion-col width-90>
                 <h2>{{ moment(event.startTime).format('LL') }}</h2>
                 <p>{{moment(event.startTime).format('LT')}}</p>
               </ion-col>
-              <ion-col width-20>
+              <ion-col width-10>
                 <button ion-button
                         icon-only
                         clear

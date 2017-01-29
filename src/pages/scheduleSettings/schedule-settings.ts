@@ -15,9 +15,19 @@ import moment from "moment";
 export class ScheduleSettingsPage implements OnInit {
   categoryError = {message: 'Vous devez choisir au moins 1 catégorie', hasError: false};
   event;
-  categories = [{label: 'Sport', isChecked: false, icon: 'football'}, {label: 'Spectacle', isChecked: false, icon: 'mic'}, {label: 'Plein air', isChecked: false, icon: 'leaf'}];
+  categories = [{label: 'Sport', values: ['sport'], isChecked: false, icon: 'football'}, {label: 'Spectacle', values: ['shows', 'music'], isChecked: false, icon: 'mic'}, {
+    label: 'Comédie',
+    values: ['comedy', 'theater'],
+    isChecked: false,
+    icon: 'happy'
+  }, {label: 'Famille', values: ['activities', 'family'], isChecked: false, icon: 'flower'}, {label: 'Culture', values: ['culture', 'business'], isChecked: false, icon: 'brush'}, {
+    label: 'Autre',
+    values: ['other'],
+    isChecked: false,
+    icon: 'cafe'
+  }];
   periods = [{icon: 'alarm', value: 'morning', isChecked: false, isLocked: false}, {icon: 'sunny', value: 'afternoon', isChecked: false, isLocked: false}, {icon: 'moon', value: 'evening', isChecked: false, isLocked: false}];
-  transports = [{icon: 'walk', value:'WALKING', isChecked: true}, {icon: 'bicycle', value:'BICYCLING', isChecked: false}, {icon: 'car', value:'DRIVING', isChecked: false}];
+  transports = [{icon: 'walk', value: 'WALKING', isChecked: true}, {icon: 'bicycle', value: 'BICYCLING', isChecked: false}, {icon: 'car', value: 'DRIVING', isChecked: false}];
 
   constructor(private navCtrl: NavController, navParams: NavParams, private eventlyService: EventlyService) {
     this.event = navParams.get('event');
@@ -76,11 +86,11 @@ export class ScheduleSettingsPage implements OnInit {
       eventId: this.event.id,
       availability: this.periods.filter(x => x.isChecked).map(x => x.value),
       criterias: [
-        {name: 'categories', value: this.categories.filter(x => x.isChecked).map(x => x.label)},
-        {name: 'transport', value: this.transports.find(x=>x.isChecked).value}
+        {name: 'categories', value: this.categories.filter(x => x.isChecked).reduce((a, b) => [...a, ...b.values], [])},
+        {name: 'transport', value: this.transports.find(x => x.isChecked).value}
       ]
     };
 
-    this.navCtrl.push(SchedulePage, {scheduleSettings:scheduleSetting});
+    this.navCtrl.push(SchedulePage, {scheduleSettings: scheduleSetting});
   }
 }
