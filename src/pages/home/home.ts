@@ -32,9 +32,7 @@ export class HomePage implements OnInit {
 
     this.eventlyService.getAllEvents().subscribe(events => {
       this.isLoading = false;
-      this.events = events.json();
-      //this.events.map(x => Object.assign(x, {startTime: moment(x.startTime).unix(), endTime: moment(x.endTime).unix()}));
-      console.log(this.events);
+      this.events = events.json().sort(function(a, b) { return Date.parse(a.startTime) - Date.parse(b.startTime); });
     });
   }
 

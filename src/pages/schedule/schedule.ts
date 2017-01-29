@@ -27,6 +27,7 @@ export class SchedulePage implements OnInit {
   googleMapsDirectionService;
   moment;
   directionsDisplay;
+  event;
 
   constructor(private navCtrl: NavController, navParams: NavParams, private eventlyService: EventlyService, private appRef: ApplicationRef) {
     this.scheduleSettings = navParams.get('scheduleSettings');
@@ -45,6 +46,7 @@ export class SchedulePage implements OnInit {
     this.eventlyService.sendScheduleSetting(this.scheduleSettings).subscribe(response => {
       const schedule = response.json();
       this.selectedAttractions = [...schedule.beforeAttractions, schedule.event, ...schedule.afterAttractions];
+      this.event = schedule.event;
       console.log(this.selectedAttractions);
 
       const distanceMatrixQuery = {
@@ -70,6 +72,10 @@ export class SchedulePage implements OnInit {
         this.directionsDisplay.setDirections(response);
       })
     });
+  }
+
+  categoryToClass(str){
+    return str.toLowerCase();
   }
 
   processDistanceMatrix(distanceMatrix) {

@@ -33,8 +33,7 @@
 }
 
 .default-category {
-    background: url('http://www.oscars.org/sites/oscars/files/styles/hero_image_wide_default/public/sgt_0.jpg?itok=1aRxXStQ') no-repeat; 
-    background-size: 100%;
+    background-color: #0F6177;
 }
 
 .header-md::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
@@ -45,4 +44,26 @@
     border-top: 1px solid #9eb2c1;
     color: #666;
     background-color: #fff;
+}
+
+.category-container {
+    &.comedy, &.theater{
+        background-color: #0F6177 ;
+    }
+
+    &.activities, &.family {
+        background-color: #0B8389;
+    }
+
+    &.shows, &.music, &.event {
+        background-color: #1BA39C;
+    }
+
+    &.sport, &.other {
+        background-color: #1BBC9B;
+    }
+
+    &.culture, &.business {
+        background-color: #16A086;
+    }
 }

@@ -6,38 +6,20 @@
   <ev-loader *ngIf="isLoading"></ev-loader>
   <div *ngIf="!isLoading">
     <ion-grid>
-      <ion-row (click)="selectNewSchedule()">
-        <ion-col width-50>
-          Date: 1 fevrier 2017
-        </ion-col>
-        <ion-col width-50
-                 style="padding: 0;">
-          <ion-row>
-            <ion-col width-50>Début: 12h</ion-col>
-            <ion-col width-50>Fin: 18h</ion-col>
-          </ion-row>
-        </ion-col>
-      </ion-row>
+      <ion-item class="date">
+        {{ moment(event.startTime).format('LL') }}
+      </ion-item>
       <div *ngFor="let attraction of selectedAttractions; let last = last;">
 
         <ion-card [ngClass]="{'event-card': attraction.startTime}">
-          <ion-grid>
-            <ion-row>
-              <ion-col width-25>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/American_Beaver.jpg/220px-American_Beaver.jpg">
-              </ion-col>
-              <ion-col width-75>
-                <h2>{{attraction.name}}</h2>
-                <ion-row>
-                  <ion-col><span>Type: {{attraction.category}}</span></ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col><span>Où: {{attraction.location}}</span></ion-col>
-                </ion-row>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card>
+          <div class="category-container {{attraction.category ? 'event' : 'default-category'}}">
+          </div>
+          <ion-card-content class="card-content">
+            <h2> {{attraction.name}} </h2>
+            <p> {{attraction.location}} </p>
+          </ion-card-content>
+
+          </ion-card>
         <div *ngIf="!last"
              class="time-container">
           <div class="vertical-line"></div>
@@ -45,6 +27,7 @@
             {{moment.duration(attraction.travelTime, "seconds").humanize()}}
           </div>
         </div>
+
       </div>
     </ion-grid>
   </div>
