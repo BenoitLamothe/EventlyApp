@@ -56,7 +56,7 @@ export class SchedulePage implements OnInit {
 
           // Needs a half star
           if (attraction.rating - parseInt(attraction.rating) >= 0.4) {
-            attraction.stars.push('star-half')
+            attraction.stars.unshift('star-half')
           }
         } else {
           attraction.stars = [];

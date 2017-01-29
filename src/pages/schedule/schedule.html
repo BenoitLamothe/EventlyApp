@@ -20,11 +20,12 @@
           <div class="category-container {{attraction.category ? 'event' : 'default-category'}}">
             <ion-grid>
               <ion-row>
-                <ion-col width-80>
+                <ion-col width-50>
                   <span *ngIf="attraction.isEvent">{{moment(attraction.startTime).format('LT')}}</span>
                 </ion-col>
-                <ion-col width-20>
-                  <ion-icon *ngFor="let star of attraction.stars"
+                <ion-col width-50>
+                  <ion-icon style="float: right;"
+                            *ngFor="let star of attraction.stars"
                             name="{{star}}"></ion-icon>
                 </ion-col>
               </ion-row>
