@@ -5,6 +5,7 @@ import {Component, OnInit} from '@angular/core';
 import {NavParams, NavController} from "ionic-angular";
 import {SchedulePage} from "../schedule/schedule";
 import {EventlyService} from "../../services/evently-service";
+import { ActionSheetController } from 'ionic-angular';
 import moment from "moment";
 
 @Component({
@@ -19,7 +20,7 @@ export class MySchedulesPage implements OnInit {
   schedules;
   
 
-  constructor(private navCtrl: NavController, navParams: NavParams, private eventlyService: EventlyService) {
+  constructor(private navCtrl: NavController, navParams: NavParams, private eventlyService: EventlyService, public actionSheetCtrl: ActionSheetController) {
     this.moment = moment;
     this.schedules = eventlyService.getMySchedules();
   }
@@ -30,4 +31,28 @@ export class MySchedulesPage implements OnInit {
   navigateToSchedule(schedule) {
     this.navCtrl.push(SchedulePage, schedule)
   }
+
+  presentActionSheet() {
+   let actionSheet = this.actionSheetCtrl.create({
+     title: 'Supprimer l\'horaire?',
+     buttons: [
+       {
+         text: 'supprimer',
+         role: 'destructive',
+         handler: () => {
+           console.log('Destructive clicked');
+         }
+       },
+       {
+         text: 'Annuler',
+         role: 'cancel',
+         handler: () => {
+           console.log('Cancel clicked');
+         }
+       }
+     ]
+   });
+
+   actionSheet.present();
+ }
 }

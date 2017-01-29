@@ -7,9 +7,10 @@ page-my-schedules {
 
   .event-card {
     margin-bottom: 0;
-    cursor: pointer;
 
     .category-container {
+
+      cursor: pointer;
       h2, p {
         color: #fff;
       }
