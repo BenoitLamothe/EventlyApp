@@ -16,12 +16,6 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <button class="info-button"
-          ion-button
-          full
-          (click)="navigateToSchedulePage()">
-    GO TO SCHEDULE->remove me
-  </button>
   <ev-loader *ngIf="isLoading"></ev-loader>
   <div *ngIf="!isLoading">
     <div *ngFor="let event of events | evDateFilter:'startTime':filterDate">
