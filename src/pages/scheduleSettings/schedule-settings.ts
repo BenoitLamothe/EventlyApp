@@ -15,7 +15,7 @@ import moment from "moment";
 export class ScheduleSettingsPage implements OnInit {
   categoryError = {message: 'Vous devez choisir au moins 1 catégorie', hasError: false};
   event;
-  categories = [{label: 'Sport', isChecked: false}, {label: 'Spectacle', isChecked: false}, {label: 'Autre', isChecked: false}, {label: 'Last one', isChecked: false}];
+  categories = [{label: 'Sport', isChecked: false, icon: 'football'}, {label: 'Spectacle', isChecked: false, icon: 'mic'}, {label: 'Plein air', isChecked: false, icon: 'leaf'}];
   periods = [{icon: 'alarm', value: 'morning', isChecked: false, isLocked: false}, {icon: 'sunny', value: 'afternoon', isChecked: false, isLocked: false}, {icon: 'moon', value: 'evening', isChecked: false, isLocked: false}];
   transports = [{icon: 'walk', isChecked: true}, {icon: 'bicycle', isChecked: false}, {icon: 'car', isChecked: false}];
 

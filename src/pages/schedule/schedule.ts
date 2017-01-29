@@ -16,6 +16,10 @@ export class SchedulePage implements OnInit {
   schedule;
   map;
 
+  formatDate(date) {
+    console.log("asdf");
+  }
+
   constructor(private navCtrl: NavController, navParams: NavParams) {
     this.schedule = navParams.get('schedule');
   }

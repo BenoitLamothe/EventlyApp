@@ -22,17 +22,18 @@
   <ev-loader *ngIf="isLoading"></ev-loader>
   <div *ngIf="!isLoading">
     <div *ngFor="let event of events | evDateFilter:'startTime':unixFilterDate">
-      <ion-card class="event-card">
+      <ion-card class="event-card" (click)="selectEventId(event.id)">
         <div class="category-container default-category">
           <ion-grid>
             <ion-row>
-               <ion-col width-67>
-                  <h2>{{(event.startTime | amFromUnix) | amDateFormat:'DD MMMM'}}</h2>
-                  <p>{{(event.startTime| amFromUnix) | amDateFormat:'YYYY'}}</p>
+               <ion-col width-80>
+                  <h2>{{ moment(event.startTime).format('LL') }}</h2>
+                  <p>{{moment(event.startTime).format('LT')}} à {{moment(event.endTime).format('LT')}}</p>
                </ion-col>
-               <ion-col width-33>
-                 <button ion-button round outline color="white" (click)="selectEventId(event.id)" small>
-                    {{selectedEventId === event.id ? "MOINS" : "PLUS"}}
+               <ion-col width-20>
+                  <button ion-button icon-only clear medium>
+                    <ion-icon *ngIf="selectedEventId === event.id" name="arrow-dropdown"></ion-icon>
+                    <ion-icon *ngIf="selectedEventId !== event.id" name="arrow-dropleft"></ion-icon>
                   </button>
                </ion-col>
             </ion-row>
@@ -43,61 +44,36 @@
             {{event.name}}
           </h2>
           <p>
-            </p>
+            {{event.location}}
+          </p>
         </ion-card-content>
       </ion-card>
 
       <ion-card *ngIf="selectedEventId === event.id"
                 class="event-details-card">
+        
         <img class="main-image"
              [src]="event.images.length > 0 ? event.images[0] : 'http://us.123rf.com/450wm/incomible/incomible1607/incomible160700050/60871177-bottle-and-glass-of-tequila-in-flat-design-style.jpg?ver=6'">
-        <ion-card-content class="card-content">
-          <ion-card-title>
-            {{event.name}}
-          </ion-card-title>
+        <button class="info-button bold"
+                ion-button
+                full
+                (click)="navigateToScheduleSettingsPage(event)" color=white>
+          Choisir cette activité
+        </button>
+        <a class="info-button" *ngIf="event.link" target="_blank" ion-button full color= white [href]="event.link">
+          <ion-icon name="internet"></ion-icon>
+          Site web
+        </a>
+        <ion-card-content *ngIf="event.description" class="card-content">
           <ion-grid>
-            <ion-row>
-              <ion-col width-50>
-                <h2>1 février 2017</h2>
-              </ion-col>
-              <ion-col width-50
-                       style="text-align: right">
-                <h2>De 20h à 22h</h2>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col width-100>
-                <h1>Description</h1>
-              </ion-col>
-            </ion-row>
             <ion-row>
               <ion-col>
                 <p> {{event.description}}</p>
               </ion-col>
             </ion-row>
-            <ion-row>
-              <ion-grid width-100>
-                <h1>Information supplémentaire</h1>
-              </ion-grid>
-            </ion-row>
-            <ul>
-              <li *ngIf="!event.location && !event.link">
-                Aucune information disponible
-              </li>
-              <li *ngIf="event.location">Location: {{event.location}}</li>
-              <li *ngIf="event.link">
-                Site web:
-                <a [href]="event.link">{{event.link}}</a>
-              </li>
-            </ul>
           </ion-grid>
         </ion-card-content>
-        <button class="info-button"
-                ion-button
-                full
-                (click)="navigateToScheduleSettingsPage(event)">
-          Personaliser mon horaire
-        </button>
+        
       </ion-card>
     </div>
   </div>

@@ -2,25 +2,41 @@ page-home {
 
   .info-button {
     margin: 0;
+    border-bottom: 1px solid #9eb2c1;
+    border-top: none;
+
+    &.bold {
+      font-weight: bold;
+      border-top: 1px solid #9eb2c1;
+    }
   }
 
   .event-card {
     margin-bottom: 0;
+    cursor: pointer;
 
     .category-container {
         h2, p {
           color: #fff;
         }
 
+        p {
+          text-align: justify
+        }
+
         .button {
-          background-color: rgba(255, 255, 255, 0.5);
-          border-radius: 3px;
-          border: none;
+          color: #fff;
+          height: 1.6em !important;
         }
     }
 
     .card-content {
       height: 56px;
+      h2, p {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
     }
   }
 
@@ -28,10 +44,9 @@ page-home {
     .main-image {
       max-height: 200px;
     }
-  }
-
-  .scroll-content {
-    background: linear-gradient(0deg, #9eb2c1, #ced6de)
+    p {
+      text-align: justify;
+    }
   }
 
   .item-datetime {
