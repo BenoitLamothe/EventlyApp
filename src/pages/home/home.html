@@ -9,79 +9,82 @@
                   [max]="maxDate"
                   [(ngModel)]="filterDate"></ion-datetime>
   </ion-item>
-  <ion-card class="event-card">
-    <div class="category-container"
-         style="background: url('http://www.oscars.org/sites/oscars/files/styles/hero_image_wide_default/public/sgt_0.jpg?itok=1aRxXStQ') no-repeat; background-size: 100%;">
-      <div class="date-display">
-        <span>1 février</span>
-        <br/>
-        <span>2017</span>
-      </div>
-    </div>
-    <ion-card-content class="card-content">
-      <ion-card-title>
-        Spectacle de Eminem
-      </ion-card-title>
-    </ion-card-content>
-    <button class="info-button"
-            ion-button
-            full
-            (click)="selectEventId(1)">
-      {{selectedEventId === 1 ? "Moins d'information" : "Plus d'information"}}
-    </button>
-  </ion-card>
-  <ion-card *ngIf="selectedEventId === 1"
-            class="event-details-card">
-    <img class="main-image"
-         [src]="'http://www.oscars.org/sites/oscars/files/styles/hero_image_wide_default/public/sgt_0.jpg?itok=1aRxXStQ'">
-    <ion-card-content class="card-content">
-      <ion-card-title>
-        Spectacle de Eminem
-      </ion-card-title>
-      <ion-grid>
-        <ion-row>
-          <ion-col width-50>
-            <h2>1 février 2017</h2>
-          </ion-col>
-          <ion-col width-50
-                   style="text-align: right">
-            <h2>De 20h à 22h</h2>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col width-100>
-            <h1>Description</h1>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-grid width-100>
-            <h1>Information supplémentaire</h1>
+  <ev-loader *ngIf="isLoading"></ev-loader>
+  <div *ngIf="!isLoading">
+    <div *ngFor="let event of events | evFilter:filterDate">
+      <ion-card class="event-card">
+        <div class="category-container"
+             style="background: url('http://www.oscars.org/sites/oscars/files/styles/hero_image_wide_default/public/sgt_0.jpg?itok=1aRxXStQ') no-repeat; background-size: 100%;">
+          <div class="date-display">
+            <span>{{event.startTime | amDateFormat:'DD MMMM'}}</span>
+            <br/>
+            <span>{{event.startTime | date:"MM/dd/yy"}}</span>
+          </div>
+        </div>
+        <ion-card-content class="card-content">
+          <ion-card-title>
+            {{event.name}}
+          </ion-card-title>
+        </ion-card-content>
+        <button class="info-button"
+                ion-button
+                full
+                (click)="selectEventId(event.id)">
+          {{selectedEventId === event.id ? "Moins d'information" : "Plus d'information"}}
+        </button>
+      </ion-card>
+      <ion-card *ngIf="selectedEventId === event.id"
+                class="event-details-card">
+        <img class="main-image"
+             [src]="event.images.length > 0 ? event.images[0] : 'http://us.123rf.com/450wm/incomible/incomible1607/incomible160700050/60871177-bottle-and-glass-of-tequila-in-flat-design-style.jpg?ver=6'">
+        <ion-card-content class="card-content">
+          <ion-card-title>
+            {{event.name}}
+          </ion-card-title>
+          <ion-grid>
+            <ion-row>
+              <ion-col width-50>
+                <h2>1 février 2017</h2>
+              </ion-col>
+              <ion-col width-50
+                       style="text-align: right">
+                <h2>De 20h à 22h</h2>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col width-100>
+                <h1>Description</h1>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p> {{event.description}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-grid width-100>
+                <h1>Information supplémentaire</h1>
+              </ion-grid>
+            </ion-row>
+            <ul>
+              <li *ngIf="!event.location && !event.link">
+                Aucune information disponible
+              </li>
+              <li *ngIf="event.location">Location: {{event.location}}</li>
+              <li *ngIf="event.link">
+                Site web:
+                <a [href]="event.link">{{event.link}}</a>
+              </li>
+            </ul>
           </ion-grid>
-        </ion-row>
-        <ul>
-          <li>Addresse: Digihub</li>
-          <li>
-            Téléphone: 819-944-5679
-          </li>
-          <li>
-            Site web:
-            <a href="https://digihub.ca/">https://digihub.ca/</a>
-          </li>
-        </ul>
-      </ion-grid>
-    </ion-card-content>
-    <button class="info-button"
-            ion-button
-            full
-            (click)="navigateToScheduleSettingsPage('theEventObject')">
-      Personaliser mon horaire
-    </button>
-  </ion-card>
+        </ion-card-content>
+        <button class="info-button"
+                ion-button
+                full
+                (click)="navigateToScheduleSettingsPage(event)">
+          Personaliser mon horaire
+        </button>
+      </ion-card>
+    </div>
+  </div>
 </ion-content>
