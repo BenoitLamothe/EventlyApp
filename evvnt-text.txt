@@ -1,0 +1,63 @@
+[Description]
+Aujourd'hui, après plus de 30 heures de code sans répit, on vous présente "evvnt",
+le meilleur compagnon pour avoir du fun à Shawinigan!
+
+Evvnt, c'est une application web orientée mobile qui permet de choisir un évènement trippant à faire à Shawinigan,
+et puis de générer un horaire complet d'une journée remplie d'activités entourant cet évènement!
+
+[Innovation]
+L'application s'occupe de tout!
+La gestion du temps, les itinéraires, les heures de repas et bien plus encore,
+tout en respectant les critères de l'utilisateur tels que son type d'activité de choix,
+son mode de transport et le temps qu'il souhaite passer à Shawinigan!
+
+On offre aussi la possibilité de regénérer des horaires au hasard
+jusqu'à temps de trouver celui qui nous convient parfaitement!
+
+Enfin, on permet d'enregistrer ses horaires préférés à même l'appareil
+dans le but de planifier d'avance son séjour à Shawinigan!
+
+Personnellement, on n'a jamais vu une telle idée d'application à ce jour,
+et on est persuadés quelle a un potentiel d'innovation considérable dans le marché du tourisme.
+
+[Avancement de l'application]
+L'application est disponible sur le web et donc accessible à tous sans devoir télécharger une application,
+tout en restant facilement accessible autant sous Android que sous iOS.
+
+Aussi, notre concept est pleinement fonctionnel,
+et les seules incohérences potentielles proviennent des données utilisées qui sont parfois imprécises ou incomplètes.
+Les planifications d'horaires sont calculées en temps réel, aucunement hard codées,
+ce qui a causé plusieurs défis techniques tout au long du développement!
+
+[Utilisation des données]
+Pour ce qui est des données, on utilise des données de commerçants venant de Yelp et
+des évènements provenant du site de Tourisme Shawinigan.
+Il faut dire que ces dernières n'étaient pas faciles à obtenir,
+il a fallu programmer un Web crawler afin de populer nos bases de données.
+
+[Collaboration équipes]
+Heureusement, nos efforts ont valu la peine,
+car on n'a pu partager nos données avec une autre équipe qui les voulait aussi!
+
+[UX]
+Ensuite, on a créé une pannopelie d'interfaces sur mesure.
+En fait, on a accordé beaucoup d'importance à l'expérience utilisateur
+dans le but de faciliter l'adoption du produit.
+Une interface invitante, simple et intuitive qui offre un look moderne, c'est la clé du succès!
+
+[Rayonnement économique]
+On a aussi déjà fait une bonne partie de notre branding!
+En fait, en plus de l'application, on a aussi pris le temps de faire un site web en faisant la promotion,
+en plus d'une vidéo promotionnelle qui explique plus en détail le fonctionnement de l'app!
+
+On vous invite à aller y jeter un coup d'oeil au evvnt.me !
+
+[Utilité d'affaires]
+Enfin, on pense que "Evnnt" a un potentiel économique incroyable pour la ville et ses commerces,
+car il transforme une simple activité intéressante en une journée complète de découvertes
+qui donnera le gout aux gens de revenir à Shawinigan !
+
+On est persuadés que même les citoyens de Shawinigan pourraient en tirer partie,
+soit pour simplifier la planification de leurs sorties,
+ou pour découvrir de nouvelles attractions qu'eux même ne connaissaient pas,
+ce qui la rend utile autant pour les citoyens que pour les gens de l'extérieur.
