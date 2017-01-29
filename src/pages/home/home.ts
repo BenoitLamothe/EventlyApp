@@ -18,7 +18,7 @@ export class HomePage implements OnInit {
   minDate = '2017-01-29';
   maxDate = '2017-12-31';
   filterDate;
-  unixFilterDate;
+  filteredEvents;
   selectedEventId = 0;
   moment: any;
 
@@ -29,7 +29,7 @@ export class HomePage implements OnInit {
     moment.locale('fr-CA');
     this.moment = moment;
 
-    
+
     this.eventlyService.getAllEvents().subscribe(events => {
       this.isLoading = false;
       this.events = events.json();

@@ -66,6 +66,13 @@ page-home {
     }
   }
 
+  .no-data {
+    margin-top:20px;
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px rgba(0,0,0,0.1);
+  }
+
   .remove-date {
     position: absolute;
     top: 15px;

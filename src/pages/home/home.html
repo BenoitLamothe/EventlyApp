@@ -18,6 +18,9 @@
 <ion-content>
   <ev-loader *ngIf="isLoading"></ev-loader>
   <div *ngIf="!isLoading">
+    <div *ngIf="(events | evDateFilter:'startTime':filterDate).length === 0" class="no-data">
+      Il n'y a aucun événement pour la date sélectionné
+    </div>
     <div *ngFor="let event of events | evDateFilter:'startTime':filterDate">
       <ion-card class="event-card"
                 (click)="selectEventId(event.id)">
