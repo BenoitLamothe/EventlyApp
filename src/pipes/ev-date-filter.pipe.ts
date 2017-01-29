@@ -10,12 +10,13 @@ import moment from "moment";
 })
 @Injectable()
 export class EvDateFilterPipe implements PipeTransform {
-  transform(array, key, unixDate) {
-    if (!unixDate) {
+  transform(array, key, date) {
+    if (!date) {
       return array;
     } else if (array) {
       return array.filter(item => {
-        if (moment(item[key]).isSame(unixDate, 'd')) {
+        if (moment(item[key]).isSame(date, 'd')) {
+          debugger;
           console.log(new Date(item[key]).getDay());
           return true;
         }
