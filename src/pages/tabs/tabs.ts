@@ -9,7 +9,7 @@ import {EventlyService} from "../../services/evently-service";
   template: `
   <ion-tabs color="grey">
     <ion-tab tabIcon="calendar" tabTitle="Évènements" tabsHideOnSubPages=true [root]="tab1"></ion-tab>
-    <ion-tab tabIcon="map" tabTitle="Mes horaires" tabsHideOnSubPages=true [tabBadge]="mySchedulesCount" [root]="tab2"></ion-tab>
+    <ion-tab tabIcon="map" tabTitle="Mes horaires" tabsHideOnSubPages=true tabBadge="{{mySchedulesCount}}" [root]="tab2"></ion-tab>
   </ion-tabs>`,
   providers: [EventlyService],
 })
