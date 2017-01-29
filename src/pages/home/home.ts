@@ -43,7 +43,7 @@ export class HomePage implements OnInit {
   }
 
   categoryToClass(str){
-    return str.replace(/[^a-zA-Z0-9]/g, '');
+    return str.toLowerCase();
   }
 
   navigateToScheduleSettingsPage(event) {
