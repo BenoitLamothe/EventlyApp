@@ -19,7 +19,8 @@
         </ion-col>
       </ion-row>
       <div *ngFor="let attraction of selectedAttractions; let last = last;">
-        <ion-card>
+
+        <ion-card [ngClass]="{'event-card': attraction.startTime}">
           <ion-grid>
             <ion-row>
               <ion-col width-25>
@@ -28,12 +29,10 @@
               <ion-col width-75>
                 <h2>{{attraction.name}}</h2>
                 <ion-row>
-                  <ion-col width-33>Début: 12h</ion-col>
-                  <ion-col width-33>Fin: 18h</ion-col>
-                  <ion-col width-33>Durée: {{moment.duration(attraction.duration, "minutes").hours()}} h</ion-col>
+                  <ion-col><span>Type: {{attraction.category}}</span></ion-col>
                 </ion-row>
                 <ion-row>
-                  <ion-col>Où: {{attraction.location}}</ion-col>
+                  <ion-col><span>Où: {{attraction.location}}</span></ion-col>
                 </ion-row>
               </ion-col>
             </ion-row>

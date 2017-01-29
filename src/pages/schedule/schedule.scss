@@ -1,4 +1,15 @@
 page-schedule {
+  ion-card {
+    span {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+  .event-card {
+    background-color: #1BA39C;
+  }
+
   .time-container {
     flex-direction: row;
     display: flex;

@@ -44,7 +44,6 @@ export class SchedulePage implements OnInit {
     this.isLoading = true;
     this.eventlyService.sendScheduleSetting(this.scheduleSettings).subscribe(response => {
       const schedule = response.json();
-      schedule.event.duration = 120;
       this.selectedAttractions = [...schedule.beforeAttractions, schedule.event, ...schedule.afterAttractions];
       console.log(this.selectedAttractions);
 
