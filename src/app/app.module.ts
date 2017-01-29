@@ -9,6 +9,7 @@ import {TabsPage} from "../pages/tabs/tabs";
 import {MomentModule} from "angular2-moment";
 import {EvLoaderComponent} from "../components/evLoader/ev-loader.component";
 import {EvFilterPipe} from "../pipes/ev-filter.pipe";
+import {EvDateFilterPipe} from "../pipes/ev-date-filter.pipe";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {EvFilterPipe} from "../pipes/ev-filter.pipe";
     MySchedulesPage,
     TabsPage,
     EvLoaderComponent,
-    EvFilterPipe
+    EvFilterPipe,
+    EvDateFilterPipe
   ],
   imports: [
     MomentModule,

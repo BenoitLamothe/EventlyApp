@@ -5,10 +5,10 @@ import {Injectable, Pipe} from '@angular/core';
 import {PipeTransform} from "@angular/core";
 
 @Pipe({
-  name: 'evFilter'
+  name: 'evDateFilter'
 })
 @Injectable()
-export class EvFilterPipe implements PipeTransform {
+export class EvDateFilterPipe implements PipeTransform {
   transform(array, key, value) {
     if (!value) {
       return array;
