@@ -11,7 +11,7 @@
   </ion-item>
   <ev-loader *ngIf="isLoading"></ev-loader>
   <div *ngIf="!isLoading">
-    <div *ngFor="let event of events | evFilter:filterDate">
+    <div *ngFor="let event of events | evFilter:'startTime':filterDate">
       <ion-card class="event-card">
         <div class="category-container"
              style="background: url('http://www.oscars.org/sites/oscars/files/styles/hero_image_wide_default/public/sgt_0.jpg?itok=1aRxXStQ') no-repeat; background-size: 100%;">

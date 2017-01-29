@@ -3,6 +3,8 @@ import {Component, OnInit} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {ScheduleSettingsPage} from "../scheduleSettings/schedule-settings";
 import {EventlyService} from "../../services/evently-service";
+import moment from 'moment';
+
 
 @Component({
   selector: 'page-home',
@@ -18,14 +20,14 @@ export class HomePage implements OnInit {
   selectedEventId = 0;
 
   constructor(public navCtrl: NavController, private eventlyService: EventlyService) {
-
   }
 
   ngOnInit(): void {
     this.eventlyService.getAllEvents().subscribe(events => {
       this.isLoading = false;
       this.events = events.json();
-      console.log(events.json());
+      this.events.map(x => Object.assign(x, {startTime: moment(x.startTime).unix(), endTime: moment(x.endTime).unix()}));
+      console.log(this.events);
     });
   }
 
